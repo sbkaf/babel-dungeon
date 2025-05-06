@@ -5,6 +5,8 @@ import ConfirmModal from "./ConfirmModal";
 type Props = {
   soundEnabled: boolean;
   toggleSound: () => void;
+  ttsEnabled: boolean;
+  toggleTTS: () => void;
   defaultMode: boolean;
   toggleMode: () => void;
   onShowCredits: () => void;
@@ -20,6 +22,8 @@ function MenuItem({ children }: { children: React.ReactNode }) {
 export default function SettingsModal({
   soundEnabled,
   toggleSound,
+  ttsEnabled,
+  toggleTTS,
   defaultMode,
   toggleMode,
   onShowCredits,
@@ -44,6 +48,11 @@ export default function SettingsModal({
         <MenuItem>
           <button style={btnStyle} onClick={toggleSound}>
             Sounds {soundEnabled ? "[ ON]" : "[OFF]"}
+          </button>
+        </MenuItem>
+        <MenuItem>
+          <button style={btnStyle} onClick={toggleTTS}>
+            TTS {ttsEnabled ? "[ ON]" : "[OFF]"}
           </button>
         </MenuItem>
         <MenuItem>

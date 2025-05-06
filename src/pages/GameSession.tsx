@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react";
+
 import { MAIN_COLOR, RED } from "~/lib/constants.ts";
-import { useState } from "react";
-import { getMode } from "~/lib/storage";
+import { getMode, getTTSEnabled } from "~/lib/storage";
 import { getCard, sendMonsterUpdate } from "~/lib/game";
+import { tts } from "~/lib/tts";
+
 import MonsterCard from "~/components/MonsterCard";
 import Meanings from "~/components/Meanings";
 import StatusBar from "~/components/StatusBar";
@@ -11,8 +14,11 @@ import GameIconsCrossMark from "~/components/icons/GameIconsCrossMark";
 export default function GameSession({ session }: { session: Session }) {
   const [show, setShow] = useState(false);
 
+  const defaultMode = getMode();
+  const ttsEnabled = getTTSEnabled();
   const monster = session.pending[0] || session.failed[0];
   const { sentence, meanings } = getCard(monster.id);
+
   const onFailed = () => {
     setShow(false);
     sendMonsterUpdate(monster, false);
@@ -21,7 +27,10 @@ export default function GameSession({ session }: { session: Session }) {
     setShow(false);
     sendMonsterUpdate(monster, true);
   };
-  const onShow = () => setShow(true);
+  const onShow = () => {
+    if (ttsEnabled && !defaultMode) tts(sentence);
+    setShow(true);
+  };
 
   const baseBtn = {
     width: "50%",
@@ -31,8 +40,11 @@ export default function GameSession({ session }: { session: Session }) {
     fontSize: "1.5em",
   };
 
-  const defaultMode = getMode();
   const meaningsComp = <Meanings key={monster.id} meanings={meanings} />;
+
+  useEffect(() => {
+    if (ttsEnabled && defaultMode) tts(sentence);
+  }, [monster]);
 
   return (
     <div style={{ textAlign: "center" }}>

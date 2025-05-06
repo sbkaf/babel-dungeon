@@ -38,6 +38,14 @@ export function setSoundEnabled(enabled: boolean) {
   localStorage.sounds = enabled ? 1 : 0;
 }
 
+export function getTTSEnabled(): boolean {
+  return parseInt(localStorage.tts || "1") === 1;
+}
+
+export function setTTSEnabled(enabled: boolean) {
+  localStorage.tts = enabled ? 1 : 0;
+}
+
 export function getMode(): boolean {
   return parseInt(localStorage.mode || "1") === 1;
 }

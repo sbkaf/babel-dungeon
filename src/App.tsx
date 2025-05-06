@@ -6,6 +6,8 @@ import {
   getShowIntro,
   getSoundEnabled,
   setSoundEnabled,
+  getTTSEnabled,
+  setTTSEnabled,
   getMode,
   setMode,
 } from "~/lib/storage";
@@ -37,6 +39,7 @@ export default function App() {
   });
   const [_ignore] = useState(() => initGame(setSession, setPlayer, setModal));
   const [sound, setSound] = useState(getSoundEnabled());
+  const [ttsEnabled, setTTS] = useState(getTTSEnabled());
   const [mode, setModeState] = useState(getMode());
 
   const playing = session && session.pending.length + session.failed.length;
@@ -78,6 +81,13 @@ export default function App() {
         return enabled;
       });
     };
+    const toggleTTS = () => {
+      setTTS((enabled) => {
+        enabled = !enabled;
+        setTTSEnabled(enabled);
+        return enabled;
+      });
+    };
     const toggleMode = () => {
       setModeState((mode) => {
         mode = !mode;
@@ -91,6 +101,8 @@ export default function App() {
         onClose={onClose}
         soundEnabled={sound}
         toggleSound={toggleSound}
+        ttsEnabled={ttsEnabled}
+        toggleTTS={toggleTTS}
         defaultMode={mode}
         toggleMode={toggleMode}
         onShowCredits={onShowCredits}
