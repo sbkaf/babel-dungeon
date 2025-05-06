@@ -1,7 +1,6 @@
-// @ts-ignore
-import { Howl } from "howler";
 import { useState } from "react";
-import { initGame } from "./lib/game";
+
+import { initGame } from "~/lib/game";
 import {
   getShowIntro,
   getSoundEnabled,
@@ -11,6 +10,7 @@ import {
   getMode,
   setMode,
 } from "~/lib/storage";
+import { backgroundMusic } from "~/lib/sounds";
 
 import Home from "~/pages/Home";
 import GameSession from "~/pages/GameSession";
@@ -22,13 +22,6 @@ import SettingsModal from "~/components/modals/SettingsModal";
 // @ts-ignore
 import "@fontsource/press-start-2p";
 import "./App.css";
-
-const soundPlayer = new Howl({
-  src: ["music.mp3"],
-  loop: true,
-  autoplay: getSoundEnabled(),
-  volume: 0.3,
-});
 
 export default function App() {
   const [session, setSession] = useState(null as Session | null);
@@ -73,9 +66,9 @@ export default function App() {
       setSound((enabled) => {
         enabled = !enabled;
         if (enabled) {
-          soundPlayer.play();
+          backgroundMusic.play();
         } else {
-          soundPlayer.stop();
+          backgroundMusic.stop();
         }
         setSoundEnabled(enabled);
         return enabled;

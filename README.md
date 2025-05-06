@@ -56,12 +56,16 @@ git push origin v1.0.1
 
 - The sentences collections were taken from [10,000 sentences app](https://github.com/tkrajina/10000sentences) that in turn extracted them from the [Tatoeba](https://tatoeba.org) collection (licensed under CC-BY 2.0).
 
-- Some icons are from [Game Icons](https://game-icons.net) - https://github.com/game-icons/icons/blob/master/license.txt
+- Cross mark and Hourglass icons by [Lorc](https://lorcblog.blogspot.com/) under CC BY 3.0
 
-- Some icons are from [Material Symbols](https://github.com/google/material-design-icons/blob/master/LICENSE) by Google (Apache 2.0 license)
+- Party popper and Check mark icons by [Delapouite](https://delapouite.com/) under CC BY 3.0
+
+- "Directory Sync" and "Settings" icons from [Material Symbols](https://github.com/google/material-design-icons/blob/master/LICENSE) by Google (Apache 2.0 license)
 
 - Font used: [Press Start 2P](https://github.com/fontsource/font-files/tree/main/fonts/google/press-start-2p) by Google (OFL-1.1 licensed)
 
 - Random monster generator code taken from https://github.com/fabianobizarro/react-monsterid (MIT license)
 
 - Background music is "Cave.mp3" from https://opengameart.org/content/cc0-scraps (CC0 - public domain)
+
+- Level-up SFX is "VictorySmall.wav" from https://opengameart.org/content/8-bit-sound-fx (CC0 - public domain)

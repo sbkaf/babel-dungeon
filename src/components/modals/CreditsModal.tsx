@@ -19,12 +19,11 @@ export default function CreditsModal(props: Props) {
         </div>
         <div style={{ fontSize: "0.9em" }}>
           <p>Sentences collection: tatoeba.org</p>
-          <p>Icons: game-icons.net and Material Symbols by Google</p>
-          <p>Font: "Press Start 2P" by Google</p>
+          <p>Cross mark and Hourglass icons by Lorc (lorcblog.blogspot.com)</p>
           <p>
-            Random monster generator: github.com/fabianobizarro/react-monsterid
+            Party popper and Check mark icons by Delapouite (delapouite.com)
           </p>
-          <p>Music: opengameart.org/content/cc0-scraps</p>
+          <p>Full credits at: github.com/ArcaneCircle/babel-dungeon</p>
         </div>
       </div>
     </ConfirmModal>
