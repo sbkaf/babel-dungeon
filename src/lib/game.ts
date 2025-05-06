@@ -22,6 +22,8 @@ import {
   setMaxSerial,
   getMaxSerial,
   setShowIntro,
+  getMode,
+  setMode,
 } from "./storage";
 
 const MONSTER_UPDATE_CMD = "mon-up",
@@ -96,7 +98,9 @@ export function startNewGame() {
 
   const uid = window.webxdc.selfAddr;
   window.webxdc.sendUpdate(
-    { payload: { uid, cmd: NEW_CMD, time: Date.now(), energy } },
+    {
+      payload: { uid, cmd: NEW_CMD, time: Date.now(), energy, mode: getMode() },
+    },
     "",
   );
 }
@@ -233,6 +237,7 @@ async function processUpdate(update: ReceivedStatusUpdate<Payload>) {
       }
       case NEW_CMD: {
         setEnergy(payload.energy, payload.time);
+        setMode(payload.mode);
         const session = await createNewSession();
         setSession(session);
         setShowIntro();

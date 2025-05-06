@@ -14,6 +14,7 @@ declare type Payload = { uid: string } & (
       cmd: "new";
       energy: number;
       time: number;
+      mode: boolean;
     }
 );
 
