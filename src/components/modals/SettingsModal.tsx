@@ -1,8 +1,10 @@
 import { LANG1_FLAG, LANG2_FLAG } from "~/lib/constants.ts";
 
+import MenuPreference from "~/components/MenuPreference";
+import MenuButton from "~/components/MenuButton";
 import ConfirmModal from "./ConfirmModal";
 
-type Props = {
+interface Props {
   soundEnabled: boolean;
   toggleSound: () => void;
   ttsEnabled: boolean;
@@ -13,7 +15,7 @@ type Props = {
   onClose: () => void;
   isOpen: boolean;
   [key: string]: any;
-};
+}
 
 function MenuItem({ children }: { children: React.ReactNode }) {
   return <div style={{ marginTop: "1em" }}>{children}</div>;
@@ -29,15 +31,11 @@ export default function SettingsModal({
   onShowCredits,
   ...props
 }: Props) {
-  const btnStyle = {
-    width: "100%",
-    color: "black",
-    backgroundColor: "white",
-    cursor: "pointer",
-    border: "none",
-    borderRadius: "5px",
-    padding: "0.5em",
-  };
+  const soundState = soundEnabled ? "[ ON]" : "[OFF]";
+  const ttsState = ttsEnabled ? "[ ON]" : "[OFF]";
+  const modeState = defaultMode
+    ? `[${LANG1_FLAG}>${LANG2_FLAG}]`
+    : `[${LANG2_FLAG}>${LANG1_FLAG}]`;
   return (
     <ConfirmModal {...props}>
       <div>
@@ -46,27 +44,20 @@ export default function SettingsModal({
           <hr />
         </div>
         <MenuItem>
-          <button style={btnStyle} onClick={toggleSound}>
-            Sounds {soundEnabled ? "[ ON]" : "[OFF]"}
-          </button>
+          <MenuPreference
+            name="Sounds"
+            state={soundState}
+            onClick={toggleSound}
+          />
         </MenuItem>
         <MenuItem>
-          <button style={btnStyle} onClick={toggleTTS}>
-            TTS {ttsEnabled ? "[ ON]" : "[OFF]"}
-          </button>
+          <MenuPreference name="TTS" state={ttsState} onClick={toggleTTS} />
         </MenuItem>
         <MenuItem>
-          <button style={btnStyle} onClick={toggleMode}>
-            Mode{" "}
-            {defaultMode
-              ? `[${LANG1_FLAG}->${LANG2_FLAG}]`
-              : `[${LANG2_FLAG}->${LANG1_FLAG}]`}
-          </button>
+          <MenuPreference name="Mode" state={modeState} onClick={toggleMode} />
         </MenuItem>
         <MenuItem>
-          <button style={btnStyle} onClick={onShowCredits}>
-            Credits
-          </button>
+          <MenuButton onClick={onShowCredits}>Credits</MenuButton>
         </MenuItem>
       </div>
     </ConfirmModal>
