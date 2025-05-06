@@ -9,7 +9,10 @@ type Props = {
 export default function CreditsModal(props: Props) {
   return (
     <ConfirmModal {...props}>
-      <div style={{ textAlign: "center" }} tabIndex={1}>
+      <div
+        style={{ textAlign: "center", overflowWrap: "break-word" }}
+        tabIndex={1}
+      >
         <div style={{ marginBottom: "2em" }}>
           CREDITS
           <hr />

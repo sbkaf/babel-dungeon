@@ -12,11 +12,11 @@ export default function TitleBar({
     justifyContent: "space-between",
     backgroundColor: "#313131",
   };
-  const settingsStyle = { padding: "0.2em 0.5em", width: "2em", height: "2em" };
+  const settingsStyle = { padding: "0.5em", width: "2em", height: "2em" };
 
   return (
     <div style={containerStyle}>
-      <div style={{ paddingLeft: "0.5em" }}>Babel Dungeon</div>
+      <div style={{ paddingLeft: "1em" }}>Babel Dungeon</div>
       <MaterialSymbolsLightSettings
         style={settingsStyle}
         onClick={onShowSettings}
