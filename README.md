@@ -69,3 +69,5 @@ git push origin v1.0.1
 - Background music is "Cave.mp3" from https://opengameart.org/content/cc0-scraps (CC0 - public domain)
 
 - Level-up SFX is "VictorySmall.wav" from https://opengameart.org/content/8-bit-sound-fx (CC0 - public domain)
+
+- Success/error SFX are from https://opengameart.org/content/8bit-sfx (CC0 - public domain)

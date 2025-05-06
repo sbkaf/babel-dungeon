@@ -12,3 +12,11 @@ export const backgroundMusic = new Howl({
 export const levelUpSfx = new Howl({
   src: ["VictorySmall.mp3"],
 });
+
+export const successSfx = new Howl({
+  src: ["success.mp3"],
+});
+
+export const errorSfx = new Howl({
+  src: ["error.mp3"],
+});

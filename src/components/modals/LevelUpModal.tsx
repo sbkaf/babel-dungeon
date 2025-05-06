@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { levelUpSfx } from "~/lib/sounds";
+import { levelUpSfx, successSfx } from "~/lib/sounds";
 import { getSoundEnabled } from "~/lib/storage";
 
 import GameIconsPartyPopper from "~/components/icons/GameIconsPartyPopper";
@@ -16,7 +16,10 @@ type Props = {
 
 export default function LevelUpModal({ level, energy, ...props }: Props) {
   useEffect(() => {
-    if (getSoundEnabled()) levelUpSfx.play();
+    if (getSoundEnabled()) {
+      successSfx.stop(); // avoid mixed sounds
+      levelUpSfx.play();
+    }
   }, [level]);
 
   const PartyPopper = () => (

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { MAIN_COLOR, RED } from "~/lib/constants.ts";
-import { getMode, getTTSEnabled } from "~/lib/storage";
+import { getMode, getTTSEnabled, getSoundEnabled } from "~/lib/storage";
+import { successSfx, errorSfx } from "~/lib/sounds";
 import { getCard, sendMonsterUpdate } from "~/lib/game";
 import { tts } from "~/lib/tts";
 
@@ -16,14 +17,17 @@ export default function GameSession({ session }: { session: Session }) {
 
   const defaultMode = getMode();
   const ttsEnabled = getTTSEnabled();
+  const soundEnabled = getSoundEnabled();
   const monster = session.pending[0] || session.failed[0];
   const { sentence, meanings } = getCard(monster.id);
 
   const onFailed = () => {
+    if (soundEnabled) errorSfx.play();
     setShow(false);
     sendMonsterUpdate(monster, false);
   };
   const onCorrect = () => {
+    if (soundEnabled) successSfx.play();
     setShow(false);
     sendMonsterUpdate(monster, true);
   };
