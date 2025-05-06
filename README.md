@@ -1,6 +1,6 @@
 # Babel Dungeon (🇩🇪/🇺🇸)
 
-German sentences learning for English speakers
+German vocabulary learning for English speakers
 
 ## Contributing
 
