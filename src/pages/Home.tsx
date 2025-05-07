@@ -33,6 +33,13 @@ export default function Home({
   const xpColor = player.lvl === MAX_LEVEL ? MAIN_COLOR : undefined;
   const xpUnit = player.lvl === MAX_LEVEL ? undefined : "xp";
 
+  const maxSeenRank = player.seen === player.total;
+  const seenProgress = maxSeenRank ? 100 : player.seen % 100;
+  const seenRankColor = maxSeenRank ? MAIN_COLOR : "inherit";
+  const maxMasteredRank = player.mastered === player.total;
+  const masteredProgress = maxMasteredRank ? 100 : player.mastered % 100;
+  const masteredRankColor = maxMasteredRank ? MAIN_COLOR : "inherit";
+
   return (
     <>
       <TitleBar onShowSettings={onShowSettings} />
@@ -89,13 +96,16 @@ export default function Home({
           <div style={{ paddingTop: "0.5em", paddingBottom: "1em" }}>
             <div style={{ paddingBottom: "0.3em" }}>Discovered:</div>
             <div style={{ paddingBottom: "0.3em" }}>
-              {player.seen % 100}/100
+              {seenProgress}/100
               <span style={{ display: "inline", float: "right" }}>
-                RANK:{Math.floor(player.seen / 100)}
+                RANK:
+                <span style={{ color: seenRankColor }}>
+                  {Math.floor(player.seen / 100)}
+                </span>
               </span>
             </div>
             <PixelatedProgressBar
-              progress={player.seen % 100}
+              progress={seenProgress}
               total={100}
               color={"#92c81a"}
               colorDiag1={"#7bc415"}
@@ -106,13 +116,16 @@ export default function Home({
           <div style={{ paddingBottom: "0.5em" }}>
             <div style={{ paddingBottom: "0.2em" }}>Mastered:</div>
             <div style={{ paddingBottom: "0.3em" }}>
-              {player.mastered % 100}/100
+              {masteredProgress}/100
               <span style={{ display: "inline", float: "right" }}>
-                RANK:{Math.floor(player.mastered / 100)}
+                RANK:
+                <span style={{ color: masteredRankColor }}>
+                  {Math.floor(player.mastered / 100)}
+                </span>
               </span>
             </div>
             <PixelatedProgressBar
-              progress={player.mastered % 100}
+              progress={masteredProgress}
               total={100}
               color={"#efb60e"}
               colorDiag1={"#e3ad0e"}
