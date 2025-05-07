@@ -32,6 +32,7 @@ declare interface Card {
 }
 
 declare interface Session {
+  xp: number;
   correct: Monster[];
   failed: Monster[];
   pending: Monster[];

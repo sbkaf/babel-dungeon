@@ -4,8 +4,9 @@ import GameIconsCheckMark from "./icons/GameIconsCheckMark";
 import GameIconsCrossMark from "./icons/GameIconsCrossMark";
 import GameIconsHourglass from "./icons/GameIconsHourglass";
 
-export default function StatusBar({ session: ses }: { session: Session }) {
-  const total = ses.correct.length + ses.failed.length + ses.pending.length;
+export default function StatusBar({ session }: { session: Session }) {
+  const total =
+    session.correct.length + session.failed.length + session.pending.length;
 
   return (
     <>
@@ -17,20 +18,21 @@ export default function StatusBar({ session: ses }: { session: Session }) {
           padding: "5px 15px 5px 15px",
         }}
       >
+        <span>+{session.xp}xp</span>
         <span>
           <GameIconsCheckMark style={{ color: MAIN_COLOR }} />
-          {ses.correct.length}
+          {session.correct.length}
         </span>
         <span>
           <GameIconsCrossMark style={{ color: RED }} />
-          {ses.failed.length}
+          {session.failed.length}
         </span>
         <span>
           <GameIconsHourglass style={{ color: "#efb60e" }} />
-          {ses.pending.length}
+          {session.pending.length}
         </span>
       </div>
-      <BasicProgressBar progress={ses.correct.length} total={total} />
+      <BasicProgressBar progress={session.correct.length} total={total} />
     </>
   );
 }

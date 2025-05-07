@@ -201,6 +201,7 @@ async function processUpdate(update: ReceivedStatusUpdate<Payload>) {
         const session = getSession()!;
         updateMonster(payload.monster, session);
         if (payload.xp) {
+          session.xp += payload.xp;
           const { xp, level } = increaseXp(payload.xp);
           const oldLevel = getLevel();
           if (oldLevel < level) {
@@ -273,7 +274,7 @@ async function createNewSession(): Promise<Session> {
   if (monsters.length < 10) {
     monsters = await db.monsters.orderBy("due").limit(10).toArray();
   }
-  return { correct: [], failed: [], pending: monsters };
+  return { xp: 0, correct: [], failed: [], pending: monsters };
 }
 
 function updateMonster(monster: Monster, session: Session) {
