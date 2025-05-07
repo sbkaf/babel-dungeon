@@ -15,7 +15,6 @@ export default function ConfirmModal({ onClose, isOpen, children }: Props) {
       <div>{children}</div>
       <MenuButton
         style={{
-          fontSize: "1em",
           color: "black",
           background: MAIN_COLOR,
           marginTop: "2em",

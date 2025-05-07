@@ -10,6 +10,7 @@ interface Props {
 export default function MenuButton({ onClick, children, ...props }: Props) {
   const btnStyle = {
     width: "100%",
+    fontSize: "1em",
     color: "black",
     backgroundColor: "white",
     cursor: "pointer",
