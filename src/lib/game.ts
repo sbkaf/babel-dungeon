@@ -76,7 +76,7 @@ export async function getPlayer(): Promise<Player> {
   const studiedToday = getLastPlayed() < today ? 0 : getStudiedToday();
   const lvl = getLevel();
   const xp = getXp();
-  const totalXp = toNextLevelMediumFast(lvl);
+  const totalXp = lvl === MAX_LEVEL ? 0 : toNextLevelMediumFast(lvl);
   const { energy } = getEnergy();
   const maxEnergy = getMaxEnergy(lvl);
   return {

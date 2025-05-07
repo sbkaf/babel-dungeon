@@ -26,19 +26,23 @@ export default function Home({
   const today = new Date().setHours(0, 0, 0, 0);
   const lastPlayed = getLastPlayed();
   const streakColor = lastPlayed === today ? MAIN_COLOR : undefined;
+  const streakSize = player.streak > 9999 ? "0.9em" : undefined;
   const toReviewColor = player.toReview ? undefined : MAIN_COLOR;
   const energyColor = player.energy < 10 ? RED : undefined;
 
-  const xp = player.lvl === MAX_LEVEL ? "MAX" : player.totalXp - player.xp;
+  const missingXp = player.totalXp - player.xp;
+  const xp = player.lvl === MAX_LEVEL ? "MAX" : missingXp;
   const xpColor = player.lvl === MAX_LEVEL ? MAIN_COLOR : undefined;
+  const xpSize =
+    missingXp > 999999 ? "0.8em" : missingXp > 99999 ? "0.9em" : undefined;
   const xpUnit = player.lvl === MAX_LEVEL ? undefined : "xp";
 
   const maxSeenRank = player.seen === player.total;
   const seenProgress = maxSeenRank ? 100 : player.seen % 100;
-  const seenRankColor = maxSeenRank ? MAIN_COLOR : "inherit";
+  const seenRankColor = maxSeenRank ? MAIN_COLOR : undefined;
   const maxMasteredRank = player.mastered === player.total;
   const masteredProgress = maxMasteredRank ? 100 : player.mastered % 100;
-  const masteredRankColor = maxMasteredRank ? MAIN_COLOR : "inherit";
+  const masteredRankColor = maxMasteredRank ? MAIN_COLOR : undefined;
 
   return (
     <>
@@ -60,6 +64,7 @@ export default function Home({
             <StatSection
               title="NEXT"
               number={xp}
+              numberSize={xpSize}
               numberColor={xpColor}
               unit={xpUnit}
               style={{ paddingBottom: "1em" }}
@@ -75,6 +80,7 @@ export default function Home({
             <StatSection
               title="STREAK"
               number={player.streak}
+              numberSize={streakSize}
               numberColor={streakColor}
               unit={"day" + (player.streak === 1 ? "" : "s")}
               style={{ paddingBottom: "1em" }}
