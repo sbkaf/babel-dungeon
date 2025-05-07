@@ -1,17 +1,72 @@
 import Dexie, { type EntityTable } from "dexie";
+import { BACKUP_CODE } from "~/lib/constants";
+
+const VERSION = 1;
 
 export const db = new Dexie("gamedb") as Dexie & {
   monsters: EntityTable<Monster, "id">;
 };
-db.version(1).stores({ monsters: "id, streak, due" });
+db.version(VERSION).stores({ monsters: "id, streak, due" });
+
+export async function exportBackup(): Promise<Backup> {
+  const monsters = await db.monsters.toArray();
+  return {
+    version: VERSION,
+    lang: BACKUP_CODE,
+    showIntro: localStorage.showIntro,
+    monsters,
+    session: localStorage.session,
+    unseenIndex: localStorage.unseenIndex,
+    mode: localStorage.mode,
+    // Player
+    streak: localStorage.streak,
+    level: localStorage.level,
+    xp: localStorage.xp,
+    energy: localStorage.energy,
+    energyTimestamp: localStorage.energyTimestamp,
+    studiedToday: localStorage.studiedToday,
+    lastPlayed: localStorage.lastPlayed,
+    // UI settings
+    music: localStorage.music,
+    sfx: localStorage.sfx,
+    tts: localStorage.tts,
+  };
+}
+
+export async function importBackup(backup: Backup) {
+  if (backup.lang !== BACKUP_CODE || backup.version > VERSION) {
+    alert(
+      "Can't import backup, it is not compatible with your version of the game",
+    );
+    return;
+  }
+
+  await db.monsters.bulkPut(backup.monsters);
+  localStorage.showIntro = backup.showIntro;
+  localStorage.session = backup.session;
+  localStorage.unseenIndex = backup.unseenIndex;
+  localStorage.mode = backup.mode;
+  // Player
+  localStorage.streak = backup.streak;
+  localStorage.level = backup.level;
+  localStorage.xp = backup.xp;
+  localStorage.energy = backup.energy;
+  localStorage.energyTimestamp = backup.energyTimestamp;
+  localStorage.studiedToday = backup.studiedToday;
+  localStorage.lastPlayed = backup.lastPlayed;
+  // UI settings
+  localStorage.music = backup.music;
+  localStorage.sfx = backup.sfx;
+  localStorage.tts = backup.tts;
+}
 
 export function getSession(): Session | null {
-  const session = localStorage.gameSession;
+  const session = localStorage.session;
   return session ? JSON.parse(session) : null;
 }
 
 export function setSession(session: Session) {
-  localStorage.gameSession = JSON.stringify(session);
+  localStorage.session = JSON.stringify(session);
 }
 
 export function getMaxSerial(): number {

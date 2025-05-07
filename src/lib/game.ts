@@ -24,11 +24,13 @@ import {
   setShowIntro,
   getMode,
   setMode,
+  importBackup,
 } from "./storage";
 
 const MONSTER_UPDATE_CMD = "mon-up",
   INIT_CMD = "init",
-  NEW_CMD = "new";
+  NEW_CMD = "new",
+  IMPORT_CMD = "import";
 const sixMinutes = 6 * 60 * 1000;
 let energyLastCheck = 0;
 let setPlayerState = null as ((player: Player) => void) | null;
@@ -90,6 +92,16 @@ export async function getPlayer(): Promise<Player> {
     mastered,
     total: SENTENCES.length,
   };
+}
+
+export function importGame(backup: Backup) {
+  const uid = window.webxdc.selfAddr;
+  window.webxdc.sendUpdate(
+    {
+      payload: { uid, cmd: IMPORT_CMD, backup },
+    },
+    "",
+  );
 }
 
 export function startNewGame() {
@@ -243,6 +255,10 @@ async function processUpdate(update: ReceivedStatusUpdate<Payload>) {
         setSession(session);
         setShowIntro();
         setSessionState(session);
+        break;
+      }
+      case IMPORT_CMD: {
+        await importBackup(payload.backup);
         break;
       }
     }

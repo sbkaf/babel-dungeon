@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import { LANG1_FLAG, LANG2_FLAG } from "~/lib/constants.ts";
+import { LANG1_FLAG, LANG2_FLAG } from "~/lib/constants";
+import { importGame } from "~/lib/game";
 import {
   getMusicEnabled,
   setMusicEnabled,
@@ -10,6 +11,8 @@ import {
   setTTSEnabled,
   getMode,
   setMode,
+  getShowIntro,
+  exportBackup,
 } from "~/lib/storage";
 import { backgroundMusic } from "~/lib/sounds";
 
@@ -28,7 +31,11 @@ function MenuItem({ children }: { children: React.ReactNode }) {
   return <div style={{ marginTop: "1em" }}>{children}</div>;
 }
 
-export default function SettingsModal({ onShowCredits, ...props }: Props) {
+export default function SettingsModal({
+  onShowCredits,
+  onClose,
+  ...props
+}: Props) {
   const [musicEnabled, setMusic] = useState(getMusicEnabled());
   const [sfxEnabled, setSFX] = useState(getSFXEnabled());
   const [ttsEnabled, setTTS] = useState(getTTSEnabled());
@@ -68,6 +75,27 @@ export default function SettingsModal({ onShowCredits, ...props }: Props) {
     });
   };
 
+  const backupLabel = (getShowIntro() ? "Import" : "Export") + " Backup";
+  const onBackup = async () => {
+    const ext = ".bak";
+    if (getShowIntro()) {
+      const [file] = await window.webxdc.importFiles({ extensions: [ext] });
+      const reader = new FileReader();
+      reader.onload = (e) =>
+        e.target && importGame(JSON.parse(e.target.result as string));
+      reader.readAsText(file, "UTF-8");
+    } else {
+      const backup = await exportBackup();
+      window.webxdc.sendToChat({
+        file: {
+          name: `babel-dungeon.${backup.lang}${ext}`,
+          plainText: JSON.stringify(backup),
+        },
+      });
+    }
+    onClose();
+  };
+
   const musicState = musicEnabled ? "[ ON]" : "[OFF]";
   const sfxState = sfxEnabled ? "[ ON]" : "[OFF]";
   const ttsState = ttsEnabled ? "[ ON]" : "[OFF]";
@@ -76,7 +104,7 @@ export default function SettingsModal({ onShowCredits, ...props }: Props) {
     : `[${LANG2_FLAG}>${LANG1_FLAG}]`;
 
   return (
-    <ConfirmModal {...props}>
+    <ConfirmModal onClose={onClose} {...props}>
       <div>
         <div style={{ marginBottom: "2em" }}>
           SETTINGS
@@ -97,6 +125,9 @@ export default function SettingsModal({ onShowCredits, ...props }: Props) {
         </MenuItem>
         <MenuItem>
           <MenuPreference name="Mode" state={modeState} onClick={toggleMode} />
+        </MenuItem>
+        <MenuItem>
+          <MenuButton onClick={onBackup}>{backupLabel}</MenuButton>
         </MenuItem>
         <MenuItem>
           <MenuButton onClick={onShowCredits}>Credits</MenuButton>

@@ -16,6 +16,10 @@ declare type Payload = { uid: string } & (
       time: number;
       mode: boolean;
     }
+  | {
+      cmd: "import";
+      backup: Backup;
+    }
 );
 
 declare interface Monster {
@@ -50,6 +54,26 @@ declare interface Player {
   seen: number; // number of sentences seen
   mastered: number; // number of sentences mastered
   total: number; // total number of sentences
+}
+
+declare interface Backup {
+  version: number;
+  lang: string;
+  showIntro: string;
+  monsters: Monster[];
+  session: string;
+  unseenIndex: string;
+  mode: string;
+  streak: string;
+  level: string;
+  xp: string;
+  energy: string;
+  energyTimestamp: string;
+  studiedToday: string;
+  lastPlayed: string;
+  music: string;
+  sfx: string;
+  tts: string;
 }
 
 declare type ModalPayload =
