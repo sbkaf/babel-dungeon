@@ -10,7 +10,7 @@ type Props = {
 export default function IntroModal(props: Props) {
   return (
     <ConfirmModal {...props}>
-      <div style={{ textAlign: "center" }} tabIndex={1}>
+      <div style={{ textAlign: "center", fontSize: "0.9em" }} tabIndex={1}>
         <div style={{ marginBottom: "2em" }}>Welcome to Babel Dungeon!</div>
         <p>
           Looking for a shortcut to learning {LANGUAGE} you entered the Babel
