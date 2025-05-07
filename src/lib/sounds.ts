@@ -1,11 +1,11 @@
 // @ts-ignore
 import { Howl } from "howler";
-import { getSoundEnabled } from "~/lib/storage";
+import { getMusicEnabled } from "~/lib/storage";
 
 export const backgroundMusic = new Howl({
   src: ["music.mp3"],
   loop: true,
-  autoplay: getSoundEnabled(),
+  autoplay: getMusicEnabled(),
   volume: 0.3,
 });
 

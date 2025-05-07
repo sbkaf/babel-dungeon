@@ -1,5 +1,5 @@
 import { clickSfx } from "~/lib/sounds";
-import { getSoundEnabled } from "~/lib/storage";
+import { getSFXEnabled } from "~/lib/storage";
 
 interface Props {
   onClick: () => void;
@@ -20,7 +20,7 @@ export default function MenuButton({ onClick, children, ...props }: Props) {
   };
   props.style = { ...btnStyle, ...(props.style || {}) };
   const clickWithSound = () => {
-    if (getSoundEnabled()) clickSfx.play();
+    if (getSFXEnabled()) clickSfx.play();
     onClick();
   };
 

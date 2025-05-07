@@ -30,12 +30,20 @@ export function setShowIntro() {
   localStorage.showIntro = 0;
 }
 
-export function getSoundEnabled(): boolean {
-  return parseInt(localStorage.sounds || "1") === 1;
+export function getMusicEnabled(): boolean {
+  return parseInt(localStorage.music || "1") === 1;
 }
 
-export function setSoundEnabled(enabled: boolean) {
-  localStorage.sounds = enabled ? 1 : 0;
+export function setMusicEnabled(enabled: boolean) {
+  localStorage.music = enabled ? 1 : 0;
+}
+
+export function getSFXEnabled(): boolean {
+  return parseInt(localStorage.sfx || "1") === 1;
+}
+
+export function setSFXEnabled(enabled: boolean) {
+  localStorage.sfx = enabled ? 1 : 0;
 }
 
 export function getTTSEnabled(): boolean {

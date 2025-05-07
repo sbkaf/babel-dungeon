@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { levelUpSfx, successSfx } from "~/lib/sounds";
-import { getSoundEnabled } from "~/lib/storage";
+import { getSFXEnabled } from "~/lib/storage";
 
 import GameIconsPartyPopper from "~/components/icons/GameIconsPartyPopper";
 import ConfirmModal from "./ConfirmModal";
@@ -16,7 +16,7 @@ type Props = {
 
 export default function LevelUpModal({ level, energy, ...props }: Props) {
   useEffect(() => {
-    if (getSoundEnabled()) {
+    if (getSFXEnabled()) {
       successSfx.stop(); // avoid mixed sounds
       levelUpSfx.play();
     }

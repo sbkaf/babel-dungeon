@@ -1,16 +1,8 @@
 import { useState } from "react";
 
 import { initGame } from "~/lib/game";
-import {
-  getShowIntro,
-  getSoundEnabled,
-  setSoundEnabled,
-  getTTSEnabled,
-  setTTSEnabled,
-  getMode,
-  setMode,
-} from "~/lib/storage";
-import { backgroundMusic, clickSfx } from "~/lib/sounds";
+import { getShowIntro, getSFXEnabled } from "~/lib/storage";
+import { clickSfx } from "~/lib/sounds";
 
 import Home from "~/pages/Home";
 import GameSession from "~/pages/GameSession";
@@ -31,9 +23,6 @@ export default function App() {
     return null as ModalPayload | null;
   });
   const [_ignore] = useState(() => initGame(setSession, setPlayer, setModal));
-  const [sound, setSound] = useState(getSoundEnabled());
-  const [ttsEnabled, setTTS] = useState(getTTSEnabled());
-  const [mode, setModeState] = useState(getMode());
 
   const playing = session && session.pending.length + session.failed.length;
   let modalComp = null;
@@ -41,7 +30,7 @@ export default function App() {
     setModal(null);
   };
   const onShowSettings = () => {
-    if (sound) clickSfx.play();
+    if (getSFXEnabled()) clickSfx.play();
     setModal({ type: "settings" });
   };
 
@@ -63,42 +52,10 @@ export default function App() {
     const onShowCredits = () => {
       setModal({ type: "credits" });
     };
-    const toggleSound = () => {
-      setSound((enabled) => {
-        enabled = !enabled;
-        if (enabled) {
-          backgroundMusic.play();
-        } else {
-          backgroundMusic.stop();
-        }
-        setSoundEnabled(enabled);
-        return enabled;
-      });
-    };
-    const toggleTTS = () => {
-      setTTS((enabled) => {
-        enabled = !enabled;
-        setTTSEnabled(enabled);
-        return enabled;
-      });
-    };
-    const toggleMode = () => {
-      setModeState((mode) => {
-        mode = !mode;
-        setMode(mode);
-        return mode;
-      });
-    };
     modalComp = (
       <SettingsModal
         isOpen={true}
         onClose={onClose}
-        soundEnabled={sound}
-        toggleSound={toggleSound}
-        ttsEnabled={ttsEnabled}
-        toggleTTS={toggleTTS}
-        defaultMode={mode}
-        toggleMode={toggleMode}
         onShowCredits={onShowCredits}
       />
     );
