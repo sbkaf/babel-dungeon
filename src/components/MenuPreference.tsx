@@ -1,6 +1,7 @@
 import MenuButton from "./MenuButton";
 
 interface Props {
+  onClick: () => void;
   name: string;
   state: string;
   [key: string]: any;

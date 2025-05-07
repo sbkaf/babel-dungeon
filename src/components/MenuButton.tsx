@@ -1,9 +1,13 @@
+import { clickSfx } from "~/lib/sounds";
+import { getSoundEnabled } from "~/lib/storage";
+
 interface Props {
+  onClick: () => void;
   children: React.ReactNode;
   [key: string]: any;
 }
 
-export default function MenuButton({ children, ...props }: Props) {
+export default function MenuButton({ onClick, children, ...props }: Props) {
   const btnStyle = {
     width: "100%",
     color: "black",
@@ -14,6 +18,14 @@ export default function MenuButton({ children, ...props }: Props) {
     padding: "0.5em",
   };
   props.style = { ...btnStyle, ...(props.style || {}) };
+  const clickWithSound = () => {
+    if (getSoundEnabled()) clickSfx.play();
+    onClick();
+  };
 
-  return <button {...props}>{children}</button>;
+  return (
+    <button onClick={clickWithSound} {...props}>
+      {children}
+    </button>
+  );
 }

@@ -20,3 +20,7 @@ export const successSfx = new Howl({
 export const errorSfx = new Howl({
   src: ["error.mp3"],
 });
+
+export const clickSfx = new Howl({
+  src: ["vgmenuhighlight.ogg"],
+});

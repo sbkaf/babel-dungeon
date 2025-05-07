@@ -9,6 +9,7 @@ import { getLastPlayed } from "~/lib/storage";
 import PixelatedProgressBar from "~/components/PixelatedProgressBar";
 import StatSection from "~/components/StatSection";
 import TitleBar from "~/components/TitleBar";
+import MenuButton from "~/components/MenuButton";
 
 const card = {
   display: "flex",
@@ -122,22 +123,19 @@ export default function Home({
           </div>
         </div>
         <p>
-          <button
+          <MenuButton
             style={{
-              width: "100%",
               fontSize: "1.5em",
               color: canPlay ? "black" : "#222222",
               background: canPlay ? MAIN_COLOR : "#3e3e3e",
               cursor: canPlay ? "pointer" : "not-allowed",
-              border: "none",
-              borderRadius: "5px",
-              padding: "15px",
+              padding: "0.6em",
             }}
             onClick={startNewGame}
             disabled={!canPlay}
           >
             Play
-          </button>
+          </MenuButton>
         </p>
       </div>
     </>

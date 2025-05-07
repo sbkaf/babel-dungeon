@@ -10,7 +10,7 @@ import {
   getMode,
   setMode,
 } from "~/lib/storage";
-import { backgroundMusic } from "~/lib/sounds";
+import { backgroundMusic, clickSfx } from "~/lib/sounds";
 
 import Home from "~/pages/Home";
 import GameSession from "~/pages/GameSession";
@@ -41,6 +41,7 @@ export default function App() {
     setModal(null);
   };
   const onShowSettings = () => {
+    if (sound) clickSfx.play();
     setModal({ type: "settings" });
   };
 

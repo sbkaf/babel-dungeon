@@ -70,4 +70,6 @@ git push origin v1.0.1
 
 - Level-up SFX is "VictorySmall.wav" from https://opengameart.org/content/8-bit-sound-fx (CC0 - public domain)
 
-- Success/error SFX are from https://opengameart.org/content/8bit-sfx (CC0 - public domain)
+- Success/error SFX are "1.wav" and "7.wav" from https://opengameart.org/content/8bit-sfx (CC0 - public domain)
+
+- Click/select SFX is "vgmenuselect.ogg" from https://opengameart.org/content/8bit-menu-highlight (CC0 - public domain)

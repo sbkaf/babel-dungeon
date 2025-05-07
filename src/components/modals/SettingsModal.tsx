@@ -36,6 +36,7 @@ export default function SettingsModal({
   const modeState = defaultMode
     ? `[${LANG1_FLAG}>${LANG2_FLAG}]`
     : `[${LANG2_FLAG}>${LANG1_FLAG}]`;
+
   return (
     <ConfirmModal {...props}>
       <div>
