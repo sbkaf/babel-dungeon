@@ -22,5 +22,5 @@ export const errorSfx = new Howl({
 });
 
 export const clickSfx = new Howl({
-  src: ["vgmenuhighlight.ogg"],
+  src: ["vgmenuhighlight.mp3"],
 });
