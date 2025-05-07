@@ -1,4 +1,4 @@
-import { MAIN_COLOR } from "~/lib/constants.ts";
+import { MAIN_COLOR } from "~/lib/constants";
 
 interface Props {
   progress: number;

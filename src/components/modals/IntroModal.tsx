@@ -1,4 +1,4 @@
-import { LANGUAGE } from "~/lib/constants.ts";
+import { LANGUAGE } from "~/lib/constants";
 import ConfirmModal from "./ConfirmModal";
 
 type Props = {

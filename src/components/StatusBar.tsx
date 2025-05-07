@@ -1,4 +1,4 @@
-import { MAIN_COLOR, RED } from "~/lib/constants.ts";
+import { MAIN_COLOR, RED } from "~/lib/constants";
 import BasicProgressBar from "./BasicProgressBar";
 import GameIconsCheckMark from "./icons/GameIconsCheckMark";
 import GameIconsCrossMark from "./icons/GameIconsCrossMark";

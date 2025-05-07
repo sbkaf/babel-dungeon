@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { MAIN_COLOR, RED } from "~/lib/constants.ts";
+import { MAIN_COLOR, RED } from "~/lib/constants";
 import { getMode, getTTSEnabled, getSFXEnabled } from "~/lib/storage";
 import { successSfx, errorSfx } from "~/lib/sounds";
 import { getCard, sendMonsterUpdate } from "~/lib/game";

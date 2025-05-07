@@ -1,4 +1,4 @@
-import { MAIN_COLOR, MASTERED_STREAK } from "~/lib/constants.ts";
+import { MAIN_COLOR, MASTERED_STREAK } from "~/lib/constants";
 import MonsterImg from "~/components/MonsterImg";
 
 interface Props {

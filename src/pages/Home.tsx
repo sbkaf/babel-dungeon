@@ -1,9 +1,4 @@
-import {
-  MAIN_COLOR,
-  RED,
-  MAX_LEVEL,
-  PLAY_ENERGY_COST,
-} from "~/lib/constants.ts";
+import { MAIN_COLOR, RED, MAX_LEVEL, PLAY_ENERGY_COST } from "~/lib/constants";
 import { startNewGame } from "~/lib/game";
 import { getLastPlayed } from "~/lib/storage";
 import PixelatedProgressBar from "~/components/PixelatedProgressBar";
