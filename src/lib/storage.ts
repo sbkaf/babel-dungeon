@@ -39,7 +39,7 @@ export function setSoundEnabled(enabled: boolean) {
 }
 
 export function getTTSEnabled(): boolean {
-  return parseInt(localStorage.tts || "1") === 1;
+  return parseInt(localStorage.tts || "0") === 1;
 }
 
 export function setTTSEnabled(enabled: boolean) {
