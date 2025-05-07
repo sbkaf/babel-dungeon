@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { MAX_LEVEL } from "~/lib/constants";
 import { initGame } from "~/lib/game";
 import { getShowIntro, getSFXEnabled } from "~/lib/storage";
 import { clickSfx } from "~/lib/sounds";
@@ -24,7 +25,6 @@ export default function App() {
   });
   const [_ignore] = useState(() => initGame(setSession, setPlayer, setModal));
 
-  const playing = session && session.pending.length + session.failed.length;
   let modalComp = null;
   const onClose = () => {
     setModal(null);
@@ -60,11 +60,14 @@ export default function App() {
       />
     );
   }
+  const playing = session && session.pending.length + session.failed.length;
+  const showXP = !player || player.lvl !== MAX_LEVEL;
+
   return (
     <>
       {modalComp}
       {playing ? (
-        <GameSession session={session} />
+        <GameSession session={session} showXP={showXP} />
       ) : (
         player && <Home player={player} onShowSettings={onShowSettings} />
       )}

@@ -4,7 +4,12 @@ import GameIconsCheckMark from "./icons/GameIconsCheckMark";
 import GameIconsCrossMark from "./icons/GameIconsCrossMark";
 import GameIconsHourglass from "./icons/GameIconsHourglass";
 
-export default function StatusBar({ session }: { session: Session }) {
+interface Props {
+  showXP: boolean;
+  session: Session;
+}
+
+export default function StatusBar({ showXP, session }: Props) {
   const total =
     session.correct.length + session.failed.length + session.pending.length;
 
@@ -18,7 +23,7 @@ export default function StatusBar({ session }: { session: Session }) {
           padding: "5px 15px 5px 15px",
         }}
       >
-        <span>+{session.xp}xp</span>
+        {showXP && <span>+{session.xp}xp</span>}
         <span>
           <GameIconsCheckMark style={{ color: MAIN_COLOR }} />
           {session.correct.length}

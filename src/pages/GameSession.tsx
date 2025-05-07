@@ -12,7 +12,12 @@ import StatusBar from "~/components/StatusBar";
 import GameIconsCheckMark from "~/components/icons/GameIconsCheckMark";
 import GameIconsCrossMark from "~/components/icons/GameIconsCrossMark";
 
-export default function GameSession({ session }: { session: Session }) {
+interface Props {
+  showXP: boolean;
+  session: Session;
+}
+
+export default function GameSession({ showXP, session }: Props) {
   const [show, setShow] = useState(false);
 
   const defaultMode = getMode();
@@ -52,7 +57,7 @@ export default function GameSession({ session }: { session: Session }) {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <StatusBar session={session} />
+      <StatusBar session={session} showXP={showXP} />
       <div style={{ padding: "0.5em 0.3em 0.3em 0.3em" }}>
         <MonsterCard
           monster={monster}
