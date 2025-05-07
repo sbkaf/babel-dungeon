@@ -126,21 +126,20 @@ export default function Home({
             />
           </div>
         </div>
-        <p>
-          <MenuButton
-            style={{
-              fontSize: "1.5em",
-              color: canPlay ? "black" : "#222222",
-              background: canPlay ? MAIN_COLOR : "#3e3e3e",
-              cursor: canPlay ? "pointer" : "not-allowed",
-              padding: "0.6em",
-            }}
-            onClick={startNewGame}
-            disabled={!canPlay}
-          >
-            Play
-          </MenuButton>
-        </p>
+        <MenuButton
+          style={{
+            fontSize: "1.5em",
+            color: canPlay ? "black" : "#222222",
+            background: canPlay ? MAIN_COLOR : "#3e3e3e",
+            cursor: canPlay ? "pointer" : "not-allowed",
+            padding: "0.6em",
+            marginTop: "1em",
+          }}
+          onClick={startNewGame}
+          disabled={!canPlay}
+        >
+          Play
+        </MenuButton>
       </div>
     </>
   );
