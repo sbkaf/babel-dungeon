@@ -93,10 +93,12 @@ export default function Home({
         <div style={card}>
           <div style={{ paddingTop: "0.5em", paddingBottom: "1em" }}>
             <div style={{ paddingBottom: "0.3em" }}>Discovered:</div>
-            {player.seen % 100}/100
-            <span style={{ display: "inline", float: "right" }}>
-              RANK:{Math.floor(player.seen / 100)}
-            </span>
+            <div style={{ paddingBottom: "0.3em" }}>
+              {player.seen % 100}/100
+              <span style={{ display: "inline", float: "right" }}>
+                RANK:{Math.floor(player.seen / 100)}
+              </span>
+            </div>
             <PixelatedProgressBar
               progress={player.seen % 100}
               total={100}
@@ -108,10 +110,12 @@ export default function Home({
           </div>
           <div style={{ paddingBottom: "0.5em" }}>
             <div style={{ paddingBottom: "0.2em" }}>Mastered:</div>
-            {player.mastered % 100}/100
-            <span style={{ display: "inline", float: "right" }}>
-              RANK:{Math.floor(player.mastered / 100)}
-            </span>
+            <div style={{ paddingBottom: "0.3em" }}>
+              {player.mastered % 100}/100
+              <span style={{ display: "inline", float: "right" }}>
+                RANK:{Math.floor(player.mastered / 100)}
+              </span>
+            </div>
             <PixelatedProgressBar
               progress={player.mastered % 100}
               total={100}
