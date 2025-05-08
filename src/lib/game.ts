@@ -31,6 +31,7 @@ const MONSTER_UPDATE_CMD = "mon-up",
   INIT_CMD = "init",
   NEW_CMD = "new",
   IMPORT_CMD = "import";
+const MAX_MONSTER_STREAK = 999;
 const sixMinutes = 6 * 60 * 1000;
 let energyLastCheck = 0;
 let setPlayerState = null as ((player: Player) => void) | null;
@@ -125,7 +126,7 @@ export function sendMonsterUpdate(monster: Monster, correct: boolean) {
   let xp = 0;
   let levelUp = 0;
   if (correct) {
-    monster.streak += 1;
+    monster.streak = Math.min(monster.streak + 1, MAX_MONSTER_STREAK);
     const level = getLevel();
     if (level !== MAX_LEVEL) {
       xp = Math.min(
