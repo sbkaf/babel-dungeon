@@ -56,11 +56,7 @@ git push origin v1.0.1
 
 - The sentences collections were taken from [10,000 sentences app](https://github.com/tkrajina/10000sentences) that in turn extracted them from the [Tatoeba](https://tatoeba.org) collection (licensed under CC-BY 2.0).
 
-- Cross mark and Hourglass icons by [Lorc](https://lorcblog.blogspot.com/) under CC BY 3.0
-
-- Party popper and Check mark icons by [Delapouite](https://delapouite.com/) under CC BY 3.0
-
-- "Directory Sync" and "Settings" icons from [Material Symbols](https://github.com/google/material-design-icons/blob/master/LICENSE) by Google (Apache 2.0 license)
+- "Settings" icon from [Material Symbols](https://github.com/google/material-design-icons/blob/master/LICENSE) by Google (Apache 2.0 license)
 
 - Font used: [Press Start 2P](https://github.com/fontsource/font-files/tree/main/fonts/google/press-start-2p) by Google (OFL-1.1 licensed)
 

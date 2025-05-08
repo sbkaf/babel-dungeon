@@ -11,6 +11,7 @@ export default defineConfig(
       alias: {
         "~": path.resolve(__dirname, "./src"),
         "@sfx": path.resolve(__dirname, "./sfx"),
+        "@img": path.resolve(__dirname, "./img"),
       },
     },
   }),

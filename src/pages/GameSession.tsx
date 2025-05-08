@@ -9,8 +9,10 @@ import { tts } from "~/lib/tts";
 import MonsterCard from "~/components/MonsterCard";
 import Meanings from "~/components/Meanings";
 import StatusBar from "~/components/StatusBar";
-import GameIconsCheckMark from "~/components/icons/GameIconsCheckMark";
-import GameIconsCrossMark from "~/components/icons/GameIconsCrossMark";
+import TextIcon from "~/components/icons/TextIcon";
+import PixelatedImgIcon from "~/components/icons/PixelatedImgIcon";
+
+import checkmarkURL from "@img/checkmark.png";
 
 interface Props {
   showXP: boolean;
@@ -96,13 +98,16 @@ export default function GameSession({ showXP, session }: Props) {
           <>
             <p style={{ fontSize: "0.8em" }}>Did you know it?</p>
             <button style={{ ...baseBtn, background: RED }} onClick={onFailed}>
-              <GameIconsCrossMark style={{ verticalAlign: "middle" }} />
+              <TextIcon text="X" />
             </button>
             <button
               style={{ ...baseBtn, background: MAIN_COLOR }}
               onClick={onCorrect}
             >
-              <GameIconsCheckMark style={{ verticalAlign: "middle" }} />
+              <PixelatedImgIcon
+                src={checkmarkURL}
+                style={{ height: "1em", width: "auto" }}
+              />
             </button>
           </>
         ) : (

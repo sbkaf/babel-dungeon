@@ -3,8 +3,10 @@ import { useEffect } from "react";
 import { levelUpSfx, successSfx } from "~/lib/sounds";
 import { getSFXEnabled } from "~/lib/storage";
 
-import GameIconsPartyPopper from "~/components/icons/GameIconsPartyPopper";
+import PixelatedImgIcon from "~/components/icons/PixelatedImgIcon";
 import ConfirmModal from "./ConfirmModal";
+
+import partyPopperURL from "@img/party-popper.png";
 
 type Props = {
   level: number;
@@ -23,7 +25,10 @@ export default function LevelUpModal({ level, energy, ...props }: Props) {
   }, [level]);
 
   const PartyPopper = () => (
-    <GameIconsPartyPopper style={{ fontSize: "1.5em" }} />
+    <PixelatedImgIcon
+      src={partyPopperURL}
+      style={{ height: "1.3em", width: "auto" }}
+    />
   );
   return (
     <ConfirmModal {...props}>

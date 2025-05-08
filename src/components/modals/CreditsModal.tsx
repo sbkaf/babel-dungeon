@@ -15,12 +15,11 @@ export default function CreditsModal(props: Props) {
           <hr />
         </div>
         <div style={{ fontSize: "0.9em" }}>
+          <p>Developer: Asiel Diaz Benitez</p>
           <p>Sentences collection: tatoeba.org</p>
-          <p>Cross mark and Hourglass icons by Lorc (lorcblog.blogspot.com)</p>
-          <p>
-            Party popper and Check mark icons by Delapouite (delapouite.com)
-          </p>
-          <p>Full credits at: github.com/ArcaneCircle/babel-dungeon</p>
+          <p>Music: "Cave" by celestialghost8</p>
+          <p>Sound effects by celestialghost8, Fupi and Dizzy Crow</p>
+          <p>More details at: github.com/ArcaneCircle/babel-dungeon</p>
         </div>
       </div>
     </ConfirmModal>

@@ -1,5 +1,7 @@
 import { useState } from "react";
-import MaterialSymbolsDirectorySync from "~/components/icons/MaterialSymbolsDirectorySync";
+import PixelatedImgIcon from "~/components/icons/PixelatedImgIcon";
+
+import rotateURL from "@img/rotate.png";
 
 export default function Meanings({ meanings }: { meanings: string[] }) {
   const [index, setIndex] = useState(0);
@@ -24,7 +26,10 @@ export default function Meanings({ meanings }: { meanings: string[] }) {
           }}
         >
           [{index + 1}/{count}]
-          <MaterialSymbolsDirectorySync />
+          <PixelatedImgIcon
+            src={rotateURL}
+            style={{ height: "1.5em", width: "auto" }}
+          />
         </button>
       ) : (
         ""

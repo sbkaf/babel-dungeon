@@ -1,14 +1,19 @@
-import { MAIN_COLOR, RED } from "~/lib/constants";
+import { RED } from "~/lib/constants";
 import BasicProgressBar from "./BasicProgressBar";
-import GameIconsCheckMark from "./icons/GameIconsCheckMark";
-import GameIconsCrossMark from "./icons/GameIconsCrossMark";
-import GameIconsHourglass from "./icons/GameIconsHourglass";
+import TextIcon from "~/components/icons/TextIcon";
+import PixelatedImgIcon from "~/components/icons/PixelatedImgIcon";
+
+import checkmarkGreenURL from "@img/checkmark-green.png";
 
 interface Props {
   showXP: boolean;
   session: Session;
   [key: string]: any;
 }
+
+const AlignedSpan = ({ children }: { children: React.ReactNode }) => (
+  <span style={{ alignContent: "end" }}>{children}</span>
+);
 
 export default function StatusBar({ showXP, session, ...props }: Props) {
   const total =
@@ -24,19 +29,22 @@ export default function StatusBar({ showXP, session, ...props }: Props) {
           padding: "5px 15px 5px 15px",
         }}
       >
-        {showXP && <span>+{session.xp}xp</span>}
-        <span>
-          <GameIconsCheckMark style={{ color: MAIN_COLOR }} />
+        {showXP && <AlignedSpan>+{session.xp}xp</AlignedSpan>}
+        <AlignedSpan>
+          <PixelatedImgIcon
+            src={checkmarkGreenURL}
+            style={{ height: "1.3em", width: "auto", marginRight: "0.2em" }}
+          />
           {session.correct.length}
-        </span>
-        <span>
-          <GameIconsCrossMark style={{ color: RED }} />
+        </AlignedSpan>
+        <AlignedSpan>
+          <TextIcon style={{ color: RED, fontSize: "1.1em", marginRight: "0.2em" }} text="X" />
           {session.failed.length}
-        </span>
-        <span>
-          <GameIconsHourglass style={{ color: "#efb60e" }} />
+        </AlignedSpan>
+        <AlignedSpan>
+          <TextIcon style={{ color: "#efb60e", fontSize: "1.1em", marginRight: "0.2em" }} text="?" />
           {session.pending.length}
-        </span>
+        </AlignedSpan>
       </div>
       <BasicProgressBar progress={session.correct.length} total={total} />
     </div>
