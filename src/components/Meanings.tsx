@@ -1,4 +1,8 @@
 import { useState } from "react";
+
+import { clickSfx } from "~/lib/sounds";
+import { getSFXEnabled } from "~/lib/storage";
+
 import PixelatedImgIcon from "~/components/icons/PixelatedImgIcon";
 
 import rotateURL from "@img/rotate.png";
@@ -6,7 +10,10 @@ import rotateURL from "@img/rotate.png";
 export default function Meanings({ meanings }: { meanings: string[] }) {
   const [index, setIndex] = useState(0);
   const count = meanings.length;
-  const onSwitch = () => setIndex((index) => (index + 1) % count);
+  const onSwitch = () => {
+    if (getSFXEnabled()) clickSfx.play();
+    setIndex((index) => (index + 1) % count);
+  };
   const fontSize = meanings[index].length > 80 ? "0.8em" : undefined;
 
   return (
