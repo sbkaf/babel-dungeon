@@ -7,14 +7,15 @@ import GameIconsHourglass from "./icons/GameIconsHourglass";
 interface Props {
   showXP: boolean;
   session: Session;
+  [key: string]: any;
 }
 
-export default function StatusBar({ showXP, session }: Props) {
+export default function StatusBar({ showXP, session, ...props }: Props) {
   const total =
     session.correct.length + session.failed.length + session.pending.length;
 
   return (
-    <>
+    <div {...props}>
       <div
         style={{
           display: "flex",
@@ -38,6 +39,6 @@ export default function StatusBar({ showXP, session }: Props) {
         </span>
       </div>
       <BasicProgressBar progress={session.correct.length} total={total} />
-    </>
+    </div>
   );
 }

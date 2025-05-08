@@ -55,10 +55,17 @@ export default function GameSession({ showXP, session }: Props) {
     if (ttsEnabled && defaultMode) tts(sentence);
   }, [monster]);
 
+  const sentenceSize = sentence.length > 80 ? "0.8em" : undefined;
+  const statusBarStyle = {
+    position: "sticky",
+    top: 0,
+    backgroundColor: "black",
+  };
+
   return (
     <div style={{ textAlign: "center" }}>
-      <StatusBar session={session} showXP={showXP} />
-      <div style={{ padding: "0.5em 0.3em 0.3em 0.3em" }}>
+      <StatusBar session={session} showXP={showXP} style={statusBarStyle} />
+      <div style={{ padding: "0.5em 0.3em 0.3em 0.3em", marginBottom: "6em" }}>
         <MonsterCard
           monster={monster}
           sentence={sentence}
@@ -66,12 +73,25 @@ export default function GameSession({ showXP, session }: Props) {
         />
         {show && (
           <>
-            <div style={{ fontSize: "1.5em", paddingBottom: "0.3em" }}>↓</div>
-            {defaultMode ? meaningsComp : sentence}
+            <div style={{ paddingTop: "0.5em", paddingBottom: "0.5em" }}>
+              <span style={{ fontSize: "1.5em" }}>↓</span>
+            </div>
+            {defaultMode ? (
+              meaningsComp
+            ) : (
+              <div style={{ fontSize: sentenceSize }}>{sentence}</div>
+            )}
           </>
         )}
       </div>
-      <div style={{ position: "fixed", bottom: "0", width: "100%" }}>
+      <div
+        style={{
+          position: "fixed",
+          bottom: "0",
+          width: "100%",
+          backgroundColor: "black",
+        }}
+      >
         {show ? (
           <>
             <p style={{ fontSize: "0.8em" }}>Did you know it?</p>

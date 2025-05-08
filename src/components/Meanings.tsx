@@ -5,10 +5,11 @@ export default function Meanings({ meanings }: { meanings: string[] }) {
   const [index, setIndex] = useState(0);
   const count = meanings.length;
   const onSwitch = () => setIndex((index) => (index + 1) % count);
+  const fontSize = meanings[index].length > 80 ? "0.8em" : undefined;
 
   return (
     <div>
-      {meanings[index]}{" "}
+      <span style={{ fontSize }}>{meanings[index]}</span>{" "}
       {count > 1 ? (
         <button
           onClick={onSwitch}

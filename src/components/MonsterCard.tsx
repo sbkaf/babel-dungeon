@@ -24,9 +24,10 @@ export default function MonsterCard({ monster, sentence, meanings }: Props) {
     fontWeight: "bold",
     fontSize: "0.9em",
   };
+  const fontSize = sentence.length > 80 ? "0.8em" : undefined;
 
   return (
-    <div style={{ paddingBottom: "0.5em" }}>
+    <div>
       <MonsterImg
         value={sentence}
         width={80}
@@ -36,7 +37,7 @@ export default function MonsterCard({ monster, sentence, meanings }: Props) {
       <div style={{ marginBottom: "0.8em" }}>
         <span style={labelStyle}>{label}</span>
       </div>
-      {meanings ? meanings : sentence}
+      {meanings ? meanings : <div style={{ fontSize }}>{sentence}</div>}
     </div>
   );
 }
