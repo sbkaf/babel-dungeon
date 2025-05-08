@@ -259,6 +259,8 @@ async function processUpdate(update: ReceivedStatusUpdate<Payload>) {
       }
       case IMPORT_CMD: {
         await importBackup(payload.backup);
+        if (setPlayerState) setPlayerState(await getPlayer());
+        setSessionState(getSession());
         break;
       }
     }

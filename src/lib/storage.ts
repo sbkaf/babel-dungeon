@@ -43,7 +43,7 @@ export async function importBackup(backup: Backup) {
 
   await db.monsters.bulkPut(backup.monsters);
   localStorage.showIntro = backup.showIntro;
-  localStorage.session = backup.session;
+  localStorage.session = backup.session || "";
   localStorage.unseenIndex = backup.unseenIndex;
   localStorage.mode = backup.mode;
   // Player
@@ -55,9 +55,9 @@ export async function importBackup(backup: Backup) {
   localStorage.studiedToday = backup.studiedToday;
   localStorage.lastPlayed = backup.lastPlayed;
   // UI settings
-  localStorage.music = backup.music;
-  localStorage.sfx = backup.sfx;
-  localStorage.tts = backup.tts;
+  localStorage.music = backup.music || "";
+  localStorage.sfx = backup.sfx || "";
+  localStorage.tts = backup.tts || "";
 }
 
 export function getSession(): Session | null {
