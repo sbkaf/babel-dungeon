@@ -143,17 +143,40 @@ export function sendMonsterUpdate(monster: Monster, correct: boolean) {
         }
       }
     }
-    let days = monster.streak;
-    if (days > 15) {
-      days = 30 * 5 + days * 4;
-    } else if (days > 10) {
-      days = 30 * (days - 10);
-    } else if (days > MASTERED_STREAK) {
-      days *= 2;
+
+    const addHours = (hours: number): number =>
+      new Date(now).setHours(now.getHours() + hours);
+    const addDays = (days: number): number => {
+      return new Date(new Date(now).setHours(0, 0, 0, 0)).setDate(
+        now.getDate() + days,
+      );
+    };
+
+    switch (monster.streak) {
+      case 1: {
+        monster.due = addHours(2);
+        break;
+      }
+      case 2: {
+        monster.due = addHours(24);
+        break;
+      }
+      case 3: {
+        monster.due = addHours(48);
+        break;
+      }
+      default: {
+        if (monster.streak > 15) {
+          monster.due = addDays(30 * 5 + monster.streak * 4);
+        } else if (monster.streak > 10) {
+          monster.due = addDays(30 * (monster.streak - 10));
+        } else if (monster.streak > MASTERED_STREAK) {
+          monster.due = addDays(monster.streak * 2);
+        } else {
+          monster.due = addDays(monster.streak);
+        }
+      }
     }
-    monster.due = new Date(now.setHours(0, 0, 0, 0)).setDate(
-      now.getDate() + days,
-    );
   } else {
     monster.streak = 0;
     monster.due = 0;
