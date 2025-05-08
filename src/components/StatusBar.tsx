@@ -38,11 +38,21 @@ export default function StatusBar({ showXP, session, ...props }: Props) {
           {session.correct.length}
         </AlignedSpan>
         <AlignedSpan>
-          <TextIcon style={{ color: RED, fontSize: "1.1em", marginRight: "0.2em" }} text="X" />
+          <TextIcon
+            style={{ color: RED, fontSize: "1.1em", marginRight: "0.2em" }}
+            text="X"
+          />
           {session.failed.length}
         </AlignedSpan>
         <AlignedSpan>
-          <TextIcon style={{ color: "#efb60e", fontSize: "1.1em", marginRight: "0.2em" }} text="?" />
+          <TextIcon
+            style={{
+              color: "#efb60e",
+              fontSize: "1.1em",
+              marginRight: "0.2em",
+            }}
+            text="?"
+          />
           {session.pending.length}
         </AlignedSpan>
       </div>
