@@ -21,7 +21,11 @@ export function tts(text: string) {
     if (!voice) voice = getVoice();
     const msg = new SpeechSynthesisUtterance();
     msg.text = text;
-    msg.voice = voice;
+    if (voice) {
+      msg.voice = voice;
+    } else {
+      msg.lang = LANG1_CODE;
+    }
     window.speechSynthesis.speak(msg);
   } catch (e) {
     console.log(e);
