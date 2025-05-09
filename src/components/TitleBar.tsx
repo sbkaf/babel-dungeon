@@ -1,4 +1,4 @@
-import MaterialSymbolsLightSettings from "~/components/icons/MaterialSymbolsLightSettings";
+import TextIcon from "~/components/icons/TextIcon";
 
 export default function TitleBar({
   onShowSettings,
@@ -12,15 +12,16 @@ export default function TitleBar({
     justifyContent: "space-between",
     backgroundColor: "#313131",
   };
-  const settingsStyle = { padding: "0.5em", width: "2em", height: "2em" };
+  const settingsStyle = {
+    padding: "0.5em",
+    fontSize: "1.4em",
+    cursor: "pointer",
+  };
 
   return (
     <div style={containerStyle}>
       <div style={{ paddingLeft: "1em" }}>Babel Dungeon</div>
-      <MaterialSymbolsLightSettings
-        style={settingsStyle}
-        onClick={onShowSettings}
-      />
+      <TextIcon text="Ξ" style={settingsStyle} onClick={onShowSettings} />
     </div>
   );
 }
