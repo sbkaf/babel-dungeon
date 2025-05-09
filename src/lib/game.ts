@@ -1,4 +1,5 @@
 import { ReceivedStatusUpdate, SendingStatusUpdate } from "@webxdc/types";
+
 import { SENTENCES } from "./sentences";
 import { MAX_LEVEL, MASTERED_STREAK, PLAY_ENERGY_COST } from "./constants";
 import {
@@ -24,8 +25,10 @@ import {
   setShowIntro,
   getMode,
   setMode,
+  getMusicEnabled,
   importBackup,
 } from "./storage";
+import { backgroundMusic } from "~/lib/sounds";
 
 const MONSTER_UPDATE_CMD = "mon-up",
   INIT_CMD = "init",
@@ -310,6 +313,11 @@ async function processUpdate(update: ReceivedStatusUpdate<Payload>) {
         await importBackup(payload.backup);
         if (setPlayerState) setPlayerState(await getPlayer());
         setSessionState(getSession());
+        if (getMusicEnabled()) {
+          backgroundMusic.play();
+        } else {
+          backgroundMusic.stop();
+        }
         break;
       }
     }
