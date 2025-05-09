@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { MAX_LEVEL, PLAY_ENERGY_COST } from "~/lib/constants";
 import { initGame, startNewGame } from "~/lib/game";
-import { getShowIntro, getSFXEnabled } from "~/lib/storage";
+import { getSFXEnabled } from "~/lib/storage";
 import { clickSfx } from "~/lib/sounds";
 
 import Home from "~/pages/Home";
@@ -21,10 +21,7 @@ import "./App.css";
 export default function App() {
   const [session, setSession] = useState(null as Session | null);
   const [player, setPlayer] = useState(null as Player | null);
-  const [modal, setModal] = useState(() => {
-    if (getShowIntro()) return { type: "intro" } as ModalPayload;
-    return null as ModalPayload | null;
-  });
+  const [modal, setModal] = useState(null as ModalPayload | null);
   const [_ignore] = useState(() => initGame(setSession, setPlayer, setModal));
 
   let modalComp = null;

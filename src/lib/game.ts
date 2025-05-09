@@ -22,6 +22,7 @@ import {
   getUnseenIndex,
   setMaxSerial,
   getMaxSerial,
+  getShowIntro,
   setShowIntro,
   getMode,
   setMode,
@@ -258,6 +259,7 @@ async function processUpdate(update: ReceivedStatusUpdate<Payload>) {
         setSessionState = payload.sessionHook;
         setPlayerState = payload.playerHook;
         setModalState = payload.modalHook;
+        setModalState(getShowIntro() ? { type: "intro" } : null);
         setSessionState(getSession());
         setPlayerState(await getPlayer());
         return; // this command is not real update, abort
