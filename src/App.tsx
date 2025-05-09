@@ -8,6 +8,7 @@ import { clickSfx } from "~/lib/sounds";
 import Home from "~/pages/Home";
 import GameSession from "~/pages/GameSession";
 import LevelUpModal from "~/components/modals/LevelUpModal";
+import ResultsModal from "~/components/modals/ResultsModal";
 import IntroModal from "~/components/modals/IntroModal";
 import CreditsModal from "~/components/modals/CreditsModal";
 import SettingsModal from "~/components/modals/SettingsModal";
@@ -36,12 +37,25 @@ export default function App() {
 
   if (modal === null) {
   } else if (modal.type === "levelUp") {
+    const closeLevelUp = () => {
+      setModal(modal.next);
+    };
     modalComp = (
       <LevelUpModal
         level={modal.newLevel}
         energy={modal.newEnergy}
         isOpen={true}
+        onClose={closeLevelUp}
+      />
+    );
+  } else if (modal.type === "results") {
+    modalComp = (
+      <ResultsModal
+        isOpen={true}
         onClose={onClose}
+        time={modal.time}
+        xp={modal.xp}
+        accuracy={modal.accuracy}
       />
     );
   } else if (modal.type === "intro") {

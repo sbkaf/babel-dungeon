@@ -118,6 +118,25 @@ export function startNewGame() {
   );
 }
 
+function getResultsModal(
+  monster: Monster,
+  extraXp: number,
+): ModalPayload | null {
+  const session = getSession()!;
+  updateMonster(monster, session);
+  if (!session.pending.length && !session.failed.length) {
+    const total = session.correct.length;
+    const correct = total - session.failedIds.length;
+    return {
+      type: "results",
+      time: monster.seen - session.start,
+      xp: session.xp + extraXp,
+      accuracy: Math.round((correct / total) * 100),
+    };
+  }
+  return null;
+}
+
 export function sendMonsterUpdate(monster: Monster, correct: boolean) {
   monster = { ...monster };
   const now = new Date();
@@ -137,12 +156,18 @@ export function sendMonsterUpdate(monster: Monster, correct: boolean) {
       if (level < newLevel) {
         levelUp = newLevel;
         const newEnergy = getMaxEnergy(newLevel) - getMaxEnergy(level);
-        try {
-          setModalState({ type: "levelUp", newEnergy, newLevel });
-        } catch (e) {
-          console.log(e);
-        }
+        setModalState({
+          type: "levelUp",
+          newEnergy,
+          newLevel,
+          next: getResultsModal(monster, xp),
+        });
       }
+    }
+
+    if (!levelUp) {
+      const modal = getResultsModal(monster, xp);
+      if (modal) setModalState(modal);
     }
 
     const addHours = (hours: number): number =>
@@ -316,7 +341,14 @@ async function createNewSession(): Promise<Session> {
   if (monsters.length < 10) {
     monsters = await db.monsters.orderBy("due").limit(10).toArray();
   }
-  return { xp: 0, correct: [], failed: [], pending: monsters };
+  return {
+    start: now,
+    xp: 0,
+    failedIds: [],
+    correct: [],
+    failed: [],
+    pending: monsters,
+  };
 }
 
 function updateMonster(monster: Monster, session: Session) {
@@ -327,7 +359,14 @@ function updateMonster(monster: Monster, session: Session) {
     index = array.findIndex((c) => c.id === monster.id);
   }
   array.splice(index, 1);
-  (monster.streak === 0 ? session.failed : session.correct).push(monster);
+  if (monster.streak === 0) {
+    session.failed.push(monster);
+    if (session.failedIds.indexOf(monster.id) === -1) {
+      session.failedIds.push(monster.id);
+    }
+  } else {
+    session.correct.push(monster);
+  }
 }
 
 function increaseXp(xp: number): { xp: number; level: number } {

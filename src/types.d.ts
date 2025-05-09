@@ -36,7 +36,9 @@ declare interface Card {
 }
 
 declare interface Session {
+  start: number;
   xp: number;
+  failedIds: number[];
   correct: Monster[];
   failed: Monster[];
   pending: Monster[];
@@ -81,12 +83,19 @@ declare type ModalPayload =
       type: "levelUp";
       newLevel: number;
       newEnergy: number;
+      next: ModalPayload | null;
     }
   | {
       type: "intro";
     }
   | {
       type: "credits";
+    }
+  | {
+      type: "results";
+      time: number;
+      xp: number;
+      accuracy: number;
     }
   | {
       type: "settings";
