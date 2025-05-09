@@ -1,5 +1,4 @@
-import { MAIN_COLOR, RED, MAX_LEVEL, PLAY_ENERGY_COST } from "~/lib/constants";
-import { startNewGame } from "~/lib/game";
+import { MAIN_COLOR, RED, MAX_LEVEL } from "~/lib/constants";
 import { getLastPlayed } from "~/lib/storage";
 import PixelatedProgressBar from "~/components/PixelatedProgressBar";
 import StatSection from "~/components/StatSection";
@@ -14,15 +13,13 @@ const card = {
   padding: "10px",
 };
 
-export default function Home({
-  player,
-  onShowSettings,
-}: {
+interface Props {
+  onPlay: () => void;
   player: Player;
   onShowSettings: () => void;
-}) {
-  const canPlay = player.energy >= PLAY_ENERGY_COST;
+}
 
+export default function Home({ onPlay, player, onShowSettings }: Props) {
   const today = new Date().setHours(0, 0, 0, 0);
   const lastPlayed = getLastPlayed();
   const streakColor = lastPlayed === today ? MAIN_COLOR : undefined;
@@ -143,14 +140,12 @@ export default function Home({
         <MenuButton
           style={{
             fontSize: "1.5em",
-            color: canPlay ? "black" : "#222222",
-            background: canPlay ? MAIN_COLOR : "#3e3e3e",
-            cursor: canPlay ? "pointer" : "not-allowed",
+            color: "black",
+            background: MAIN_COLOR,
             padding: "0.6em",
             marginTop: "1em",
           }}
-          onClick={startNewGame}
-          disabled={!canPlay}
+          onClick={onPlay}
         >
           Play
         </MenuButton>

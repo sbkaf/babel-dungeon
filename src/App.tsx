@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { MAX_LEVEL } from "~/lib/constants";
-import { initGame } from "~/lib/game";
+import { MAX_LEVEL, PLAY_ENERGY_COST } from "~/lib/constants";
+import { initGame, startNewGame } from "~/lib/game";
 import { getShowIntro, getSFXEnabled } from "~/lib/storage";
 import { clickSfx } from "~/lib/sounds";
 
@@ -9,6 +9,7 @@ import Home from "~/pages/Home";
 import GameSession from "~/pages/GameSession";
 import LevelUpModal from "~/components/modals/LevelUpModal";
 import ResultsModal from "~/components/modals/ResultsModal";
+import NoEnergyModal from "~/components/modals/NoEnergyModal";
 import IntroModal from "~/components/modals/IntroModal";
 import CreditsModal from "~/components/modals/CreditsModal";
 import SettingsModal from "~/components/modals/SettingsModal";
@@ -58,6 +59,8 @@ export default function App() {
         accuracy={modal.accuracy}
       />
     );
+  } else if (modal.type === "noEnergy") {
+    modalComp = <NoEnergyModal isOpen={true} onClose={onClose} />;
   } else if (modal.type === "intro") {
     modalComp = <IntroModal isOpen={true} onClose={onClose} />;
   } else if (modal.type === "credits") {
@@ -76,6 +79,14 @@ export default function App() {
   }
   const playing = session && session.pending.length + session.failed.length;
   const showXP = !player || player.lvl !== MAX_LEVEL;
+  const onPlay = () => {
+    if (player === null) return;
+    if (player.energy >= PLAY_ENERGY_COST) {
+      startNewGame();
+    } else {
+      setModal({ type: "noEnergy" });
+    }
+  };
 
   return (
     <>
@@ -83,7 +94,13 @@ export default function App() {
       {playing ? (
         <GameSession session={session} showXP={showXP} />
       ) : (
-        player && <Home player={player} onShowSettings={onShowSettings} />
+        player && (
+          <Home
+            player={player}
+            onShowSettings={onShowSettings}
+            onPlay={onPlay}
+          />
+        )
       )}
     </>
   );

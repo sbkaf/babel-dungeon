@@ -92,6 +92,9 @@ declare type ModalPayload =
       type: "credits";
     }
   | {
+      type: "noEnergy";
+    }
+  | {
       type: "results";
       time: number;
       xp: number;
