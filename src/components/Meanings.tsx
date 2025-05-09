@@ -18,7 +18,9 @@ export default function Meanings({ meanings }: { meanings: string[] }) {
 
   return (
     <div>
-      <span className="selectable" style={{ fontSize }}>{meanings[index]}</span>{" "}
+      <span className="selectable" style={{ fontSize }}>
+        {meanings[index]}
+      </span>{" "}
       {count > 1 ? (
         <button
           onClick={onSwitch}

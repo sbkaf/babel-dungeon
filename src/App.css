@@ -20,7 +20,8 @@ body {
   word-break: break-word;
 }
 
-button, button * {
+button,
+button * {
   font-family: inherit;
   cursor: pointer;
 }
