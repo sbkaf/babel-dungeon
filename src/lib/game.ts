@@ -67,6 +67,7 @@ export function getCard(id: number): Card {
 }
 
 export async function getPlayer(): Promise<Player> {
+  const now = Date.now();
   const today = new Date().setHours(0, 0, 0, 0);
   const yesterday = new Date(today).setDate(new Date(today).getDate() - 1);
 
@@ -75,7 +76,7 @@ export async function getPlayer(): Promise<Player> {
     .where("streak")
     .aboveOrEqual(MASTERED_STREAK)
     .count();
-  const toReview = await db.monsters.where("due").belowOrEqual(today).count();
+  const toReview = await db.monsters.where("due").belowOrEqual(now).count();
   const streak = getLastPlayed() < yesterday ? 0 : getStreak();
   const studiedToday = getLastPlayed() < today ? 0 : getStudiedToday();
   const lvl = getLevel();
