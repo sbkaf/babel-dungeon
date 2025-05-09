@@ -30,7 +30,7 @@ What do I have?	Was habe ich?
 What are they doing?|What do they do?|What're they doing?	Was machen sie?
 What are they after?	Was möchten sie?
 Mary can swim.	Mary kann schwimmen.
-God willing...	Gott will…
+God willing...	So Gott will…
 Come here, John.	Komm her, John.
 I want to sleep.	Ich will schlafen.
 I want to lose weight.	Ich will abnehmen.
