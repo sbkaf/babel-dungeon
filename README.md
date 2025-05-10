@@ -1,6 +1,6 @@
 # Babel Dungeon (🇩🇪/🇺🇸)
 
-German vocabulary learning for English speakers
+A gamified tool for German/English vocabulary learning
 
 ## Contributing
 
@@ -54,7 +54,7 @@ git push origin v1.0.1
 
 ### Credits
 
-- The sentences were extracted from the [Tatoeba](https://tatoeba.org) collection (licensed under CC-BY 2.0).
+- The sentences were extracted from the [Tatoeba](https://tatoeba.org/en/downloads) collection (licensed under CC-BY 2.0).
 
 - Font used: [Press Start 2P](https://github.com/fontsource/font-files/tree/main/fonts/google/press-start-2p) by Google (OFL-1.1 licensed)
 
