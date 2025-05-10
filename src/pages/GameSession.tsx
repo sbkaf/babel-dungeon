@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { MAIN_COLOR, RED } from "~/lib/constants";
+import { _ } from "~/lib/util";
 import { getMode, getTTSEnabled, getSFXEnabled } from "~/lib/storage";
 import { successSfx, errorSfx } from "~/lib/sounds";
 import { getCard, sendMonsterUpdate } from "~/lib/game";
@@ -96,7 +97,7 @@ export default function GameSession({ showXP, session }: Props) {
       >
         {show ? (
           <>
-            <p style={{ fontSize: "0.8em" }}>Did you know it?</p>
+            <p style={{ fontSize: "0.8em" }}>{_("Did you know it?")}</p>
             <button style={{ ...baseBtn, background: RED }} onClick={onFailed}>
               <TextIcon text="X" />
             </button>
@@ -119,7 +120,7 @@ export default function GameSession({ showXP, session }: Props) {
               width: "100%",
             }}
           >
-            Reveal
+            {_("Reveal")}
           </button>
         )}
       </div>

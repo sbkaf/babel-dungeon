@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { LANG1_FLAG, LANG2_FLAG } from "~/lib/lang";
+import { _ } from "~/lib/util";
 import { importGame } from "~/lib/game";
 import {
   getMusicEnabled,
@@ -75,7 +76,7 @@ export default function SettingsModal({
     });
   };
 
-  const backupLabel = (getShowIntro() ? "Import" : "Export") + " Backup";
+  const backupLabel = _(getShowIntro() ? "Import Backup" : "Export Backup");
   const onBackup = async () => {
     const ext = ".bak";
     if (getShowIntro()) {
@@ -96,9 +97,9 @@ export default function SettingsModal({
     onClose();
   };
 
-  const musicState = musicEnabled ? "[ ON]" : "[OFF]";
-  const sfxState = sfxEnabled ? "[ ON]" : "[OFF]";
-  const ttsState = ttsEnabled ? "[ ON]" : "[OFF]";
+  const musicState = _(musicEnabled ? "[ ON]" : "[OFF]");
+  const sfxState = _(sfxEnabled ? "[ ON]" : "[OFF]");
+  const ttsState = _(ttsEnabled ? "[ ON]" : "[OFF]");
   const modeState = defaultMode
     ? `[${LANG1_FLAG}>${LANG2_FLAG}]`
     : `[${LANG2_FLAG}>${LANG1_FLAG}]`;
@@ -107,30 +108,42 @@ export default function SettingsModal({
     <ConfirmModal onClose={onClose} {...props}>
       <div>
         <div style={{ marginBottom: "2em" }}>
-          SETTINGS
+          {_("SETTINGS")}
           <hr />
         </div>
         <MenuItem>
           <MenuPreference
-            name="Music"
+            name={_("Music")}
             state={musicState}
             onClick={toggleMusic}
           />
         </MenuItem>
         <MenuItem>
-          <MenuPreference name="SFX" state={sfxState} onClick={toggleSFX} />
+          <MenuPreference
+            name={_("SFX")}
+            state={sfxState}
+            onClick={toggleSFX}
+          />
         </MenuItem>
         <MenuItem>
-          <MenuPreference name="TTS" state={ttsState} onClick={toggleTTS} />
+          <MenuPreference
+            name={_("TTS")}
+            state={ttsState}
+            onClick={toggleTTS}
+          />
         </MenuItem>
         <MenuItem>
-          <MenuPreference name="Mode" state={modeState} onClick={toggleMode} />
+          <MenuPreference
+            name={_("Mode")}
+            state={modeState}
+            onClick={toggleMode}
+          />
         </MenuItem>
         <MenuItem>
           <MenuButton onClick={onBackup}>{backupLabel}</MenuButton>
         </MenuItem>
         <MenuItem>
-          <MenuButton onClick={onShowCredits}>Credits</MenuButton>
+          <MenuButton onClick={onShowCredits}>{_("Credits")}</MenuButton>
         </MenuItem>
       </div>
     </ConfirmModal>

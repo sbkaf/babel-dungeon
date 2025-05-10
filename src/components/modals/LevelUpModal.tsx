@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { _ } from "~/lib/util";
 import { levelUpSfx, successSfx } from "~/lib/sounds";
 import { getSFXEnabled } from "~/lib/storage";
 
@@ -34,11 +35,11 @@ export default function LevelUpModal({ level, energy, ...props }: Props) {
     <ConfirmModal {...props}>
       <div style={{ textAlign: "center" }}>
         <div style={{ marginBottom: "2em" }}>
-          You Leveled Up!
+          {_("You Leveled Up!")}
           <hr />
         </div>
         <div style={{ fontSize: "0.8em", paddingBottom: "0.4em" }}>
-          Now at level
+          {_("Now at level")}
         </div>
         <div style={{ fontSize: "1.5em" }}>
           <PartyPopper />

@@ -1,4 +1,5 @@
 import { MAIN_COLOR } from "~/lib/constants";
+import { _ } from "~/lib/util";
 
 import MenuButton from "~/components/MenuButton";
 import Modal from "./Modal";
@@ -21,7 +22,7 @@ export default function ConfirmModal({ onClose, isOpen, children }: Props) {
         }}
         onClick={onClose}
       >
-        Continue
+        {_("Continue")}
       </MenuButton>
     </Modal>
   );

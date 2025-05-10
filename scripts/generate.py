@@ -28,7 +28,7 @@ def main():
         count2 = 0
         for id, sen in list(sorted(sentences.items()))[start:count]:
             count2 += 1
-            f.write(f"{sen}\t{'|'.join(meanings[id])}")
+            f.write(f"{sen}\t{'|'.join(meanings[id])}".replace("`", "\`"))
             if count2 != count:
                 f.write("\n")
         f.write('`.split("\\n");\n')

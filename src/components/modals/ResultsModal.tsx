@@ -1,4 +1,5 @@
 import { MAIN_COLOR, RED } from "~/lib/constants";
+import { _ } from "~/lib/util";
 import { formatTime } from "~/lib/dateutil";
 
 import ConfirmModal from "./ConfirmModal";
@@ -25,20 +26,20 @@ export default function ResultsModal({ time, xp, accuracy, ...props }: Props) {
     <ConfirmModal {...props}>
       <div>
         <div style={{ marginBottom: "2em" }}>
-          ROUND COMPLETED!
+          {_("ROUND COMPLETED!")}
           <hr />
         </div>
         <div>
           <div style={divStyle}>
-            <span>Total XP:</span>
+            <span>{_("Total XP:")}</span>
             <span>+{xp}</span>
           </div>
           <div style={divStyle}>
-            <span>Accuracy:</span>
+            <span>{_("Accuracy:")}</span>
             <span style={{ color: accuracyColor }}>{accuracy}%</span>
           </div>
           <div style={divStyle}>
-            <span>Time:</span>
+            <span>{_("Time:")}</span>
             <span>{formatTime(time)}</span>
           </div>
         </div>

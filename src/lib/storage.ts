@@ -1,5 +1,7 @@
 import Dexie, { type EntityTable } from "dexie";
+
 import { LANG1_CODE, LANG2_CODE } from "~/lib/lang";
+import { _ } from "~/lib/util";
 
 const VERSION = 2;
 
@@ -42,7 +44,9 @@ export async function importBackup(backup: Backup) {
     backup.version == 1
   ) {
     alert(
-      "Can't import backup, it is not compatible with your version of the game",
+      _(
+        "Can't import backup, it is not compatible with your version of the game",
+      ),
     );
     return;
   }

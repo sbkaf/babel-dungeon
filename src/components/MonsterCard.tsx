@@ -1,4 +1,6 @@
 import { MAIN_COLOR, MASTERED_STREAK } from "~/lib/constants";
+import { _ } from "~/lib/util";
+
 import MonsterImg from "~/components/MonsterImg";
 
 interface Props {
@@ -8,7 +10,9 @@ interface Props {
 }
 
 export default function MonsterCard({ monster, sentence, meanings }: Props) {
-  const label = monster.seen ? `lvl.${monster.streak + 1}` : "NEW";
+  const label = monster.seen
+    ? _("lvl.{{l}}").replace("{{l}}", String(monster.streak + 1))
+    : _("NEW");
   const labelColor =
     monster.streak >= MASTERED_STREAK
       ? "#efb60e"

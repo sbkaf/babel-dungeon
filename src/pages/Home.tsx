@@ -1,4 +1,5 @@
 import { MAIN_COLOR, RED, MAX_LEVEL } from "~/lib/constants";
+import { _ } from "~/lib/util";
 import { getLastPlayed } from "~/lib/storage";
 import PixelatedProgressBar from "~/components/PixelatedProgressBar";
 import StatSection from "~/components/StatSection";
@@ -28,11 +29,11 @@ export default function Home({ onPlay, player, onShowSettings }: Props) {
   const energyColor = player.energy < 10 ? RED : undefined;
 
   const missingXp = player.totalXp - player.xp;
-  const xp = player.lvl === MAX_LEVEL ? "MAX" : missingXp;
+  const xp = player.lvl === MAX_LEVEL ? _("MAX") : missingXp;
   const xpColor = player.lvl === MAX_LEVEL ? MAIN_COLOR : undefined;
   const xpSize =
     missingXp > 999999 ? "0.8em" : missingXp > 99999 ? "0.9em" : undefined;
-  const xpUnit = player.lvl === MAX_LEVEL ? undefined : "xp";
+  const xpUnit = player.lvl === MAX_LEVEL ? undefined : _("xp");
 
   const maxSeenRank = player.seen === player.total;
   const seenProgress = maxSeenRank ? 100 : player.seen % 100;
@@ -54,12 +55,12 @@ export default function Home({ onPlay, player, onShowSettings }: Props) {
         >
           <div style={{ ...card, width: "50%", marginRight: "0.2em" }}>
             <StatSection
-              title={"LEVEL"}
+              title={_("LEVEL")}
               number={player.lvl}
               style={{ paddingBottom: "1em" }}
             />
             <StatSection
-              title="NEXT"
+              title={_("NEXT")}
               number={xp}
               numberSize={xpSize}
               numberColor={xpColor}
@@ -67,7 +68,7 @@ export default function Home({ onPlay, player, onShowSettings }: Props) {
               style={{ paddingBottom: "1em" }}
             />
             <StatSection
-              title="ENERGY"
+              title={_("ENERGY")}
               number={player.energy}
               numberColor={energyColor}
               unit={`/${player.maxEnergy}`}
@@ -75,21 +76,21 @@ export default function Home({ onPlay, player, onShowSettings }: Props) {
           </div>
           <div style={{ ...card, width: "50%" }}>
             <StatSection
-              title="STREAK"
+              title={_("STREAK")}
               number={player.streak}
               numberSize={streakSize}
               numberColor={streakColor}
-              unit={"day" + (player.streak === 1 ? "" : "s")}
+              unit={_(player.streak === 1 ? "day" : "days")}
               style={{ paddingBottom: "1em" }}
             />
             <StatSection
-              title="PLAYED"
+              title={_("PLAYED")}
               number={player.studiedToday}
-              unit="today"
+              unit={_("today")}
               style={{ paddingBottom: "1em" }}
             />
             <StatSection
-              title="REVIEW"
+              title={_("REVIEW")}
               number={player.toReview}
               numberColor={toReviewColor}
             />
@@ -97,11 +98,11 @@ export default function Home({ onPlay, player, onShowSettings }: Props) {
         </div>
         <div style={card}>
           <div style={{ paddingTop: "0.5em", paddingBottom: "1em" }}>
-            <div style={{ paddingBottom: "0.3em" }}>Discovered:</div>
+            <div style={{ paddingBottom: "0.3em" }}>{_("Discovered:")}</div>
             <div style={{ paddingBottom: "0.3em" }}>
               {seenProgress}/100
               <span style={{ display: "inline", float: "right" }}>
-                RANK:
+                {_("RANK:")}
                 <span style={{ color: seenRankColor }}>
                   {Math.floor(player.seen / 100)}
                 </span>
@@ -117,11 +118,11 @@ export default function Home({ onPlay, player, onShowSettings }: Props) {
             />
           </div>
           <div style={{ paddingBottom: "0.5em" }}>
-            <div style={{ paddingBottom: "0.2em" }}>Mastered:</div>
+            <div style={{ paddingBottom: "0.2em" }}>{_("Mastered:")}</div>
             <div style={{ paddingBottom: "0.3em" }}>
               {masteredProgress}/100
               <span style={{ display: "inline", float: "right" }}>
-                RANK:
+                {_("RANK:")}
                 <span style={{ color: masteredRankColor }}>
                   {Math.floor(player.mastered / 100)}
                 </span>
@@ -147,7 +148,7 @@ export default function Home({ onPlay, player, onShowSettings }: Props) {
           }}
           onClick={onPlay}
         >
-          Play
+          {_("Play")}
         </MenuButton>
       </div>
     </>

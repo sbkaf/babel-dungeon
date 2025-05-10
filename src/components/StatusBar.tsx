@@ -1,4 +1,6 @@
 import { RED } from "~/lib/constants";
+import { _ } from "~/lib/util";
+
 import BasicProgressBar from "./BasicProgressBar";
 import TextIcon from "~/components/icons/TextIcon";
 import PixelatedImgIcon from "~/components/icons/PixelatedImgIcon";
@@ -29,7 +31,11 @@ export default function StatusBar({ showXP, session, ...props }: Props) {
           padding: "5px 15px 5px 15px",
         }}
       >
-        {showXP && <AlignedSpan>+{session.xp}xp</AlignedSpan>}
+        {showXP && (
+          <AlignedSpan>
+            {_("+{{x}}xp").replace("{{x}}", String(session.xp))}
+          </AlignedSpan>
+        )}
         <AlignedSpan>
           <PixelatedImgIcon
             src={checkmarkGreenURL}
