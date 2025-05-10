@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { LANG1_FLAG, LANG2_FLAG } from "~/lib/constants";
+import { LANG1_FLAG, LANG2_FLAG } from "~/lib/lang";
 import { importGame } from "~/lib/game";
 import {
   getMusicEnabled,

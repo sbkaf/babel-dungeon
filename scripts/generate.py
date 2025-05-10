@@ -24,8 +24,14 @@ def main():
     print(f"TOTAL: {len(sentences)}")
 
     with open(dest, "w") as f:
+        f.write("export const SENTENCES = `")
+        count2 = 0
         for id, sen in list(sorted(sentences.items()))[start:count]:
-            f.write(f"{sen}\t{'|'.join(meanings[id])}\n")
+            count2 += 1
+            f.write(f"{sen}\t{'|'.join(meanings[id])}")
+            if count2 != count:
+                f.write("\n")
+        f.write('`.split("\\n");\n')
 
 
 if __name__ == "__main__":

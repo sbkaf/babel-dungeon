@@ -1,4 +1,4 @@
-import { LANG1_CODE } from "~/lib/constants";
+import { LANG1_CODE } from "~/lib/lang";
 
 let voice = getVoice();
 

@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from "dexie";
-import { BACKUP_CODE } from "~/lib/constants";
+import { LANG1_CODE, LANG2_CODE } from "~/lib/lang";
 
 const VERSION = 2;
 
@@ -7,6 +7,8 @@ export const db = new Dexie("gamedb") as Dexie & {
   monsters: EntityTable<Monster, "id">;
 };
 db.version(1).stores({ monsters: "id, streak, due" });
+
+const BACKUP_CODE = `${LANG1_CODE}-${LANG2_CODE}`;
 
 export async function exportBackup(): Promise<Backup> {
   const monsters = await db.monsters.toArray();
@@ -34,7 +36,11 @@ export async function exportBackup(): Promise<Backup> {
 }
 
 export async function importBackup(backup: Backup) {
-  if (backup.lang !== BACKUP_CODE || backup.version > VERSION || backup.version == 1) {
+  if (
+    backup.lang !== BACKUP_CODE ||
+    backup.version > VERSION ||
+    backup.version == 1
+  ) {
     alert(
       "Can't import backup, it is not compatible with your version of the game",
     );
