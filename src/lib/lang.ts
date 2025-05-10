@@ -1,7 +1,7 @@
 export const LANG1_CODE = "de",
   LANG2_CODE = "en",
   LANG1_FLAG = "🇩🇪",
-  LANG2_FLAG = "🇺🇸";
+  LANG2_FLAG = "🇬🇧";
 
 export const translations = {
   Continue: undefined,

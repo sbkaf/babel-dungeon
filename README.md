@@ -1,4 +1,4 @@
-# Babel Dungeon (🇩🇪/🇺🇸)
+# Babel Dungeon (🇩🇪/🇬🇧)
 
 A gamified tool for German/English vocabulary learning
 
