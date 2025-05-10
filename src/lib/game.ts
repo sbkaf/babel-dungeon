@@ -63,7 +63,7 @@ const workerLoop = async () => {
 setTimeout(workerLoop, 0);
 
 export function getCard(id: number): Card {
-  const [meaning, sentence] = SENTENCES[id].split("\t");
+  const [sentence, meaning] = SENTENCES[id].split("\t");
   return { id, sentence, meanings: meaning.split("|") };
 }
 

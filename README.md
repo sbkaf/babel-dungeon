@@ -54,9 +54,7 @@ git push origin v1.0.1
 
 ### Credits
 
-- The sentences collections were taken from [10,000 sentences app](https://github.com/tkrajina/10000sentences) that in turn extracted them from the [Tatoeba](https://tatoeba.org) collection (licensed under CC-BY 2.0).
-
-- "Settings" icon from [Material Symbols](https://github.com/google/material-design-icons/blob/master/LICENSE) by Google (Apache 2.0 license)
+- The sentences were extracted from the [Tatoeba](https://tatoeba.org) collection (licensed under CC-BY 2.0).
 
 - Font used: [Press Start 2P](https://github.com/fontsource/font-files/tree/main/fonts/google/press-start-2p) by Google (OFL-1.1 licensed)
 

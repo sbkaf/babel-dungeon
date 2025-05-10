@@ -2,6 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "generate": "./scripts/generate.py",
     "start": "vite --port 3000",
     "fix": "prettier --write .",
     "check": "tsc && prettier --check .",
