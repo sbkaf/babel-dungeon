@@ -3,7 +3,7 @@ import Dexie, { type EntityTable } from "dexie";
 import { LANG1_CODE, LANG2_CODE } from "~/lib/lang";
 import { _ } from "~/lib/util";
 
-const VERSION = 2;
+const VERSION = 3;
 
 export const db = new Dexie("gamedb") as Dexie & {
   monsters: EntityTable<Monster, "id">;
@@ -41,7 +41,7 @@ export async function importBackup(backup: Backup) {
   if (
     backup.lang !== BACKUP_CODE ||
     backup.version > VERSION ||
-    backup.version == 1
+    backup.version <= 2
   ) {
     alert(
       _(
