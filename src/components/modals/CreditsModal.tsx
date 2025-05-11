@@ -21,6 +21,7 @@ export default function CreditsModal(props: Props) {
           <p>{_("Sentences collection: tatoeba.org")}</p>
           <p>{_(`Music: "Cave" by celestialghost8`)}</p>
           <p>{_("Sound effects by celestialghost8, Fupi and Dizzy Crow")}</p>
+          <p>{_("Translation: sbkaf")}</p>
           <p>{_("More details at: github.com/ArcaneCircle/babel-dungeon")}</p>
         </div>
       </div>
