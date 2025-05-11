@@ -16,7 +16,7 @@ export const translations = {
   days: "Tage",
   PLAYED: "GESPIELT",
   today: "heute",
-  REVIEW: "WIEDERHOLEN",
+  REVIEW: "ZU PRÜFEN",
   "Discovered:": "Entdeckt:",
   "RANK:": "RANG:",
   "Mastered:": "Gemeistert:",
@@ -40,20 +40,20 @@ export const translations = {
 
   "Welcome to Babel Dungeon!": "Willkommen zu Babel Dungeon!",
   "Looking for a shortcut to learning German you entered the Babel Dungeon, but to your surprise, instead of answers, all you found was weird creatures creeping in the darkness.":
-    "Auf der Suche nach einer Abkürzung Englisch zu lernen betrittst Du das Babel Dungeon, aber zu Deiner Überraschung findest Du keine Antworten sondern nur seltsame Kreaturen, die in der Dunkelheit umherkriechen!",
+    "Auf der Suche nach einer Abkürzung diese Sprache zu lernen betrittst Du das Babel Dungeon, aber zu Deiner Überraschung findest Du keine Antworten sondern nur seltsame Kreaturen, die in der Dunkelheit umherkriechen!",
   "They look weak but you realized that by solving their linguistic riddles, they become stronger!":
-    "Sie scheinen schwach, doch Du merkst, dass sie mit jedem von Dir gelöstem English-Rätsel stärker werden!",
+    "Sie scheinen schwach, doch Du merkst, dass sie mit jeder von Dir gelösten Übersetzung stärker werden!",
   "Adapting to the circumstances, you decided to train them and build your own army of minions to, one day, get out of the dungeon and take over the world, thus banning any language you don't know.":
-    "Dich an diese Umstände anpassend entscheidest Du sie zu trainieren, um eine Armee aus Minions zu erschaffen, aus diesem Verlies zu treten und mit ihnen jede Sprache zu verbannen, die Du selbst nicht kennst.",
+    "Dich an diese Umstände anpassend entscheidest Du sie zu trainieren, um eine Armee aus Minions zu erschaffen, aus diesem Verlies zu treten, die Weltherrschaft zu übernehmen und mit ihnen jede Sprache zu verbannen, die Du selbst nicht kennst.",
 
   "You Leveled Up!": "Du erhältst das nächste Level!",
   "Now at level": "Jetzt bei Level",
 
-  "LOW ENERGY!": "NIEDRIGE ENERGIE",
+  "LOW ENERGY!": "ZU NIEDRIGE ENERGIE!",
   "Your energy is too low. You need at least {{e}} points to play.":
     "Deine Energie ist zu niedrig. Du brauchst mindestens {{e}} Punkte zum Spielen.",
   "You will recover energy over time. Take a break and come back later!":
-    "Deine bekommst Energie mit der Zeit. Nimm Dir eine Pause und komme später wieder!",
+    "Du bekommst Energie mit der Zeit. Nimm Dir eine Pause und komme später wieder!",
 
   "ROUND COMPLETED!": "RUNDE ABGESCHLOSSEN",
   "Total XP:": "Gesamt XP:",
@@ -65,8 +65,8 @@ export const translations = {
   SFX: "Effekte",
   TTS: "Sprachausgabe",
   Mode: "Modus",
-  "Import Backup": "Backup importieren",
-  "Export Backup": "Backup exportieren",
+  "Import Backup": "Spielstand laden",
+  "Export Backup": "Spielstand sichern",
   Credits: "Danksagung",
   "[ ON]": "[ AN]",
   "[OFF]": "[AUS]",
